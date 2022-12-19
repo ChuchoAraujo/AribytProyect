@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			roles: "",
 			demo: [
 				{
 					title: "FIRST",
@@ -20,6 +21,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+		selectionRoles: (rol) => {
+			getStore.roles = rol
+			setStore({roles: rol})
+			console.log("Se ha seleccionado el:" + getStore.roles)
+		},
 
 			getMessage: async () => {
 				try{

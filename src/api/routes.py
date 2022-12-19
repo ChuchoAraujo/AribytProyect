@@ -23,13 +23,13 @@ def get_users():
 
 #---------------------------------------- POST / LOGIN ----------------------------------------#
 
-@api.route('/login', methods=['POST'])
+@api.route('/acceso', methods=['POST'])
 def login():
     email = request.json.get("email", None)
-    password = request,json.get("password, None")
-    role = request.json.get("role", None)
+    password = request.json.get("password", None)
+    # role = request.json.get("role", None)
 
-    user = User.query.filter_by(email=email,password=password, role=role).first()
+    user = User.query.filter_by(email=email,password=password).first()
   
     if user == None:
         return jsonify({"msg": "User or password, Not exist!"}), 401

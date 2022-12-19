@@ -1,36 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
+import { store, actions } from "../../store/flux";
+import { Context } from "../../store/appContext";
+
 
 export const Login = () => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
   const [enviarFormulario, setFormulario] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("");
+  let urlRole = "vista_"+ store.roles;
 
-  const acceso = () => {
-    fetch(process.env.BACKEND_URL + "/api/login", {
+  const access = () => {
+    fetch(process.env.BACKEND_URL + "/api/acceso", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
-        "email": initialValues.email,
-        "password": initialValues.password,
-      
+        "email": email,
+        "password": password,
+        "role": store.roles
       }),
     })
       .then((response) => response.json())
       .then((result) => {
-        // if (result.token) {
-        //   localStorage.setItem("token", result.token);
-        //   navigate("/members");
-        // } else {
-        //   setError(result.msg);
-        // }
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+          navigate(urlRole);
+        }
         console.log(result);
       })
       .catch((error) => console.log("error", error));
   };
-
-hast aqui hiciste!!!!!!
 
   return (
     <>
@@ -56,11 +60,11 @@ hast aqui hiciste!!!!!!
 
           if (!valores.password) {
             errores.password = "Por favor ingresa el password";
-          } else if (
-            !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-              valores.password
-            )
-          ) {
+          // } else if (
+          //   !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+          //     valores.password
+          //   )
+          // ) {
             errores.password =
               "El email solo puede contener letras, numeros, puntos, guiones y guión bajo";
           }
@@ -70,6 +74,9 @@ hast aqui hiciste!!!!!!
         onSubmit={(valores, { resetForm }) => {
           resetForm();
           console.log("Formulario enviado");
+          console.log("Formulario enviado", valores.email, valores.password);
+          setEmail(valores.email)
+          setPassword(valores.password)
           setFormulario(true);
           setTimeout(() => setFormulario(false), 5000);
         }}
@@ -99,7 +106,7 @@ hast aqui hiciste!!!!!!
               />
             </div>
 
-            <button type="submit" onClick={acceso}>
+            <button type="submit" onClick={access}>
               Enviar
             </button>
             {enviarFormulario && (
