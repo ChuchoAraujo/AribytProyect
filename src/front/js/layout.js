@@ -14,6 +14,8 @@ import { Vista_clasificadora } from "./pages/clasificadora/vista_clasificadora";
 import { Container_mecanico } from "./pages/mecanico/container_mecanico";
 import { Vista_mecanico } from "./pages/mecanico/vista_mecanico";
 import { Vista_encargado } from "./pages/encargado/vista_encargado";
+import { Page_logo } from "./pages/page_logo/page_logo";
+import { Page_roles } from "./pages/page_roles/page_Roles";
 
 //create your first component
 const Layout = () => {
@@ -28,6 +30,8 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<Page_logo />} path="/" />
+            <Route element={<Page_roles />} path="/" />
             <Route
               element={<Vista_clasificadora />}
               path="/vista_clasificadora"
@@ -36,18 +40,12 @@ const Layout = () => {
               element={<Container_clasificadora />}
               path="/vista_clasificadora/:id"
             />
-            <Route
-              element={<Vista_mecanico />}
-              path="/vista_mecanico"
-            />
+            <Route element={<Vista_mecanico />} path="/vista_mecanico" />
             <Route
               element={<Container_mecanico />}
               path="/vista_mecanico/:id"
             />
-            <Route
-              element={<Vista_encargado />}
-              path="/vista_encargado"
-            />
+            <Route element={<Vista_encargado />} path="/vista_encargado" />
 
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />

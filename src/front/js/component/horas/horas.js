@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormularioClasificadora } from "../formulario_clasificadora";
+import { FormularioClasificadora } from "../formularios/formulario_clasificadora";
 import { Link } from "react-router-dom";
 
 export const Horas = () => {

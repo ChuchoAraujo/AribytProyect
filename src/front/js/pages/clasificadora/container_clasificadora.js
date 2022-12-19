@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
-import { Formulario_clasificadora } from "../../component/formulario_clasificadora";
+import { Formulario_clasificadora } from "../../component/formularios/formulario_clasificadora";
 import "../../../styles/home.css";
 
 export const Container_clasificadora = () => {

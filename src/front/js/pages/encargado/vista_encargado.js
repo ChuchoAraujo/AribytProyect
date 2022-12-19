@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Horas } from "../../component/horas/horas";
 import "../../../styles/home.css";
-import { Formulario_clasificadora } from "../../component/formulario_clasificadora";
-import { Formulario_mecanico } from "../../component/formulario_mecanico";
+import { Formulario_clasificadora } from "../../component/formularios/formulario_clasificadora";
+import { Formulario_mecanico } from "../../component/formularios/formulario_mecanico";
 
 export const Vista_encargado = () => {
   const { store, actions } = useContext(Context);
@@ -23,10 +23,9 @@ export const Vista_encargado = () => {
           </div>
 
           <div className="p-5">
-              <h1>Area Mecanico</h1>
-              <Formulario_mecanico />
+            <h1>Area Mecanico</h1>
+            <Formulario_mecanico />
           </div>
-
         </div>
       </div>
     </>

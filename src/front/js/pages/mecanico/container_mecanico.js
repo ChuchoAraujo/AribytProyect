@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
-import { Formulario_mecanico } from "../../component/formulario_mecanico";
+import { Formulario_mecanico } from "../../component/formularios/formulario_mecanico";
 import "../../../styles/home.css";
 
 export const Container_mecanico = () => {

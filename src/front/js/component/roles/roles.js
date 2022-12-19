@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import mec from "../../img/mec.svg";
-import Icon_mecanico from "./icons/icon_mecanico";
-import Icon_clasificadora from "./icons/icon_clasificadora";
-import Icon_encargado from "./icons/icon_encargado";
-import "../../styles/home.css";
+import { Context } from "../../store/appContext";
+import Icon_mecanico from "../icons/icon_mecanico";
+import Icon_clasificadora from "../icons/icon_clasificadora";
+import Icon_encargado from "../icons/icon_encargado";
+import "../../../styles/home.css";
 
 export const Roles = () => {
   const { store, actions } = useContext(Context);
