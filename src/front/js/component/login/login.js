@@ -4,6 +4,34 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 export const Login = () => {
   const [enviarFormulario, setFormulario] = useState(false);
 
+  const acceso = () => {
+    fetch(process.env.BACKEND_URL + "/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        "email": initialValues.email,
+        "password": initialValues.password,
+      
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        // if (result.token) {
+        //   localStorage.setItem("token", result.token);
+        //   navigate("/members");
+        // } else {
+        //   setError(result.msg);
+        // }
+        console.log(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+hast aqui hiciste!!!!!!
+
   return (
     <>
       <Formik
@@ -49,7 +77,7 @@ export const Login = () => {
         {({ errors }) => (
           <Form className="formulario">
             <div>
-              <label htmlFor="cajas">Email</label>
+              <label htmlFor="email">Email</label>
               <Field type="email" id="email" name="email" placeholder="Email" />
               <ErrorMessage
                 name="email"
@@ -58,7 +86,7 @@ export const Login = () => {
             </div>
 
             <div>
-              <label htmlFor="articulo">Password</label>
+              <label htmlFor="password">Password</label>
               <Field
                 type="password"
                 id="password"
@@ -71,7 +99,9 @@ export const Login = () => {
               />
             </div>
 
-            <button type="submit">Enviar</button>
+            <button type="submit" onClick={acceso}>
+              Enviar
+            </button>
             {enviarFormulario && (
               <p className="exito">Formulario enviado con exito!</p>
             )}

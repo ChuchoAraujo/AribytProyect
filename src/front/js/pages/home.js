@@ -8,6 +8,8 @@ import { Page_login } from "./page_login/page_login";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
+
+
 	return (
     <div className="text-center mt-5">
       <div className="p-5">
