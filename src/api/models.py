@@ -6,6 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    role = db.Column(db.String, unique=True, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -15,6 +16,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "role": self.role
             # do not serialize the password, its a security breach
         }
 
@@ -53,4 +55,22 @@ class Tabla_clasificadora(db.Model):
             "tiempo": self.tiempo,
             "velocidad": self.velocidad,
             "gramos": self.gramos,
+        }
+
+
+class Tabla_mecanico(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_tabla = db.Column(db.Integer, primary_key=True)
+    problema = db.Column(db.String, unique=True, nullable=True)
+    accion = db.Column(db.String, unique=True, nullable=True)
+
+    def __repr__(self):
+        return f'<Tabla_mecanico {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "id_tabla": self.id_tabla,
+            "problema": self.problema,
+            "accion": self.accion
         }
