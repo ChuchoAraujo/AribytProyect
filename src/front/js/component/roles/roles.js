@@ -10,65 +10,37 @@ export const Roles = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container-fluid text-center mt-5 row">
+    <div className="container text-center mt-5 row">
       <div className="row mt-3 mb-3">
-        <div className="col-5"></div>
-
-        <button className="boton_roles col-1 border rounded border border-2 p-3">
-          <div>
-            <Icon_mecanico
-              width={30}
-              onClick={() => {
-                actions.selectionRoles("mecanico");
-              }}
-            />
-          </div>
-        </button>
-
-        <div className="col-1 d-flex align-items-center p-3">
+        <button
+          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          onClick={() => {
+            actions.selectionRoles("mecanico");
+          }}
+        >
+          <Icon_mecanico width={30} />
           <h1 className="tituloRoles">Mecanico</h1>
-        </div>
-        <div className="col-5"></div>
-      </div>
-
-      <div className="row mt-3 mb-3">
-        <div className="col-5"></div>
-
-        <button className="boton_roles col-1 border rounded border border-3 p-3">
-          <div>
-            <Icon_clasificadora
-              width={30}
-              onClick={() => {
-                actions.selectionRoles("clasificadora");
-              }}
-            />
-          </div>
         </button>
 
-        <div className="col-1 d-flex align-items-center p-3">
+        <button
+          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          onClick={() => {
+            actions.selectionRoles("clasificadora");
+          }}
+        >
+          <Icon_clasificadora width={30} />
           <h1 className="tituloRoles">Clasificadora</h1>
-        </div>
-        <div className="col-5"></div>
-      </div>
-
-      <div className="row mt-3 mb-3">
-        <div className="col-5"></div>
-
-        <button className="boton_roles col-1 border rounded border border-3 p-3">
-          <div>
-            <Icon_encargado
-              width={30}
-              onClick={() => {
-                actions.selectionRoles("encargado");
-              }}
-            />
-          </div>
         </button>
 
-        <div className="col-1 d-flex align-items-center p-3">
+        <button
+          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          onClick={() => {
+            actions.selectionRoles("encargado");
+          }}
+        >
+          <Icon_encargado width={30} />
           <h1 className="tituloRoles">Encargado</h1>
-        </div>
-        <div className="col-5"></div>
+        </button>
       </div>
     </div>
   );

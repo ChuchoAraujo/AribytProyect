@@ -88,6 +88,8 @@ button{
 .boton_roles {
 	background-color: white;
 	color: #bbbcbb;
+
+	
 }
 
 .boton_roles:hover {
@@ -109,5 +111,5 @@ button{
 /*TITULOS*/
 
 .tituloRoles {
-	font-size: 30px;
+	font-size: 20px;
 }

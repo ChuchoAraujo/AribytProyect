@@ -20,9 +20,9 @@ export const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
-        role: store.roles,
+        "email": email,
+        "password": password,
+        "role": store.roles,
       }),
     })
       .then((response) => response.json())

@@ -11,12 +11,13 @@ export const Home = () => {
 
 
 	return (
-    <div className="text-center mt-5 row">
-      <div className="paginaLogo container-fluid col-6">
+    <div className="container-fluid text-center mt-5 row">
+      <div className="col-1"></div>
+      <div className="paginaLogo col-4">
         <Page_roles />
         <Page_login />
       </div>
-      <div className="p-5 col-6">
+      <div className="p-5 col-7">
         <Page_logo />
       </div>
       
