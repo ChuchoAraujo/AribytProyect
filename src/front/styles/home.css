@@ -12,7 +12,7 @@
 }
 
 .formulario > div {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .formulario label {
@@ -74,4 +74,20 @@
 
 .formulario input[type="radio"] {
 	width: auto;
+}
+
+
+/*BOTON ROLES*/
+
+.boton_roles {
+	background-color: white;
+	color: #bbbcbb;
+}
+
+.boton_roles:hover {
+	background-color: #4dada4;
+}
+
+.icons_roles{
+	color: red;
 }

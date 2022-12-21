@@ -13,16 +13,18 @@ export const Roles = () => {
     <div className="container-fluid text-center mt-5 row">
       <div className="row mt-3 mb-3">
         <div className="col-5"></div>
-        <div className="col-1 border rounded border border-2 p-3">
-          <button>
+
+        <button className="boton_roles col-1 border rounded border border-2 p-3">
+          <div>
             <Icon_mecanico
               width={100}
               onClick={() => {
                 actions.selectionRoles("mecanico");
               }}
             />
-          </button>
-        </div>
+          </div>
+        </button>
+
         <div className="col-1 d-flex align-items-center p-3">
           <h1>Mecanico</h1>
         </div>
@@ -31,16 +33,18 @@ export const Roles = () => {
 
       <div className="row mt-3 mb-3">
         <div className="col-5"></div>
-        <div className="col-1 border rounded border border-2 p-3">
-          <button>
-          <Icon_clasificadora
-            width={100}
-            onClick={() => {
-              actions.selectionRoles("clasificadora");
-            }}
-          />
-          </button>
-        </div>
+
+        <button className="boton_roles col-1 border rounded border border-3 p-3">
+          <div>
+            <Icon_clasificadora
+              width={100}
+              onClick={() => {
+                actions.selectionRoles("clasificadora");
+              }}
+            />
+          </div>
+        </button>
+
         <div className="col-1 d-flex align-items-center p-3">
           <h1>Clasificadora</h1>
         </div>
@@ -49,11 +53,20 @@ export const Roles = () => {
 
       <div className="row mt-3 mb-3">
         <div className="col-5"></div>
-        <div className="col-1 border rounded border border-2 p-3">
-          <Icon_encargado width={100} />
-        </div>
+
+        <button className="boton_roles col-1 border rounded border border-3 p-3">
+          <div>
+            <Icon_encargado
+              width={100}
+              onClick={() => {
+                actions.selectionRoles("encargado");
+              }}
+            />
+          </div>
+        </button>
+
         <div className="col-1 d-flex align-items-center p-3">
-          <h1>Responsable</h1>
+          <h1>Encargado</h1>
         </div>
         <div className="col-5"></div>
       </div>

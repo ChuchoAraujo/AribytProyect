@@ -27,12 +27,12 @@ def get_users():
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    # role = request.json.get("role", None)
+    role = request.json.get("role", None)
 
-    user = User.query.filter_by(email=email,password=password).first()
+    user = User.query.filter_by(email=email,password=password, role=role).first()
   
     if user == None:
-        return jsonify({"msg": "User or password, Not exist!"}), 401
+        return jsonify({"msg": "User, password or role Not exist!"}), 401
     
     access_token = create_access_token(identity=user.email)
 

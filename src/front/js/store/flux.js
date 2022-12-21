@@ -28,6 +28,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			console.log("Se ha seleccionado el:" + getStore.roles)
 		},
 
+	
+
 			getMessage: async () => {
 				try{
 					// fetching data from the backend

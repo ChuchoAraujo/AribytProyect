@@ -1,17 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { store, actions } from "../../store/flux";
 import { Context } from "../../store/appContext";
+import Icon_encargado from "../icons/icon_encargado";
 
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const [enviarFormulario, setFormulario] = useState(false);
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let urlRole = "vista_"+ store.roles;
+  let urlRole = "vista_" + store.roles;
+
+
 
   const access = () => {
     fetch(process.env.BACKEND_URL + "/api/acceso", {
@@ -20,9 +23,9 @@ export const Login = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "email": email,
-        "password": password,
-        "role": store.roles
+        email: email,
+        password: password,
+        role: store.roles,
       }),
     })
       .then((response) => response.json())
@@ -60,11 +63,11 @@ export const Login = () => {
 
           if (!valores.password) {
             errores.password = "Por favor ingresa el password";
-          // } else if (
-          //   !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-          //     valores.password
-          //   )
-          // ) {
+            // } else if (
+            //   !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+            //     valores.password
+            //   )
+            // ) {
             errores.password =
               "El email solo puede contener letras, numeros, puntos, guiones y guión bajo";
           }
@@ -75,8 +78,8 @@ export const Login = () => {
           resetForm();
           console.log("Formulario enviado");
           console.log("Formulario enviado", valores.email, valores.password);
-          setEmail(valores.email)
-          setPassword(valores.password)
+          setEmail(valores.email);
+          setPassword(valores.password);
           setFormulario(true);
           setTimeout(() => setFormulario(false), 5000);
         }}
