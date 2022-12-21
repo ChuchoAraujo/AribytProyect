@@ -79,6 +79,12 @@
 
 /*BOTON ROLES*/
 
+button{
+	padding: 5px;
+	border-radius: 5px;
+}
+
+
 .boton_roles {
 	background-color: white;
 	color: #bbbcbb;
@@ -88,6 +94,20 @@
 	background-color: #4dada4;
 }
 
-.icons_roles{
-	color: red;
+
+/*ICONS*/
+.efectoIcon {
+  opacity: 1;
+  transition-duration: 2s;
+  /* transition-timing-function: linear; */
+}
+
+.efectoIcon:hover {
+  opacity: 0;
+}
+
+/*TITULOS*/
+
+.tituloRoles {
+	font-size: 30px;
 }

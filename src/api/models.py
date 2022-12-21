@@ -34,6 +34,7 @@ class Tabla_clasificadora(db.Model):
     problema = db.Column(db.String, unique=False, nullable=False)
     accion = db.Column(db.String, unique=False, nullable=False)
     tiempo = db.Column(db.Float, unique=False, nullable=False)
+    prueba = db.Column(db.String, unique=False, nullable=False)
     velocidad = db.Column(db.Float, unique=False, nullable=True)
     gramos = db.Column(db.Float, unique=False, nullable=True)
 
@@ -53,6 +54,7 @@ class Tabla_clasificadora(db.Model):
             "problema": self.problema,
             "accion": self.accion,
             "tiempo": self.tiempo,
+            "prueba": self.prueba,
             "velocidad": self.velocidad,
             "gramos": self.gramos,
         }

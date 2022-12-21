@@ -6,16 +6,8 @@ import "../../../styles/home.css";
 export const Page_logo = () => {
   const { store, actions } = useContext(Context);
 
-  // const alerta = ()=> {
-  //      setTimeout(function () {
-  //        alert("Hello");
-  //        console.log("emergente")
-  //      }, 3000);
-  // }
- 
-
   return (
-    <div className="text-center mt-5">
+    <div className="text-center">
       <Logo />
     </div>
   );

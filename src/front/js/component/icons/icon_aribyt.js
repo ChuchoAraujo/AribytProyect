@@ -1,7 +1,8 @@
 import * as React from "react";
 
-const SvgComponent = (props) => (
+const Icon_aribyt = (props) => (
   <svg
+  // className="efectoIcon"
     id="Capa_2"
     data-name="Capa 2"
     xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +21,4 @@ const SvgComponent = (props) => (
   </svg>
 );
 
-export default SvgComponent;
+export default Icon_aribyt;

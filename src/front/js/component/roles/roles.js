@@ -17,7 +17,7 @@ export const Roles = () => {
         <button className="boton_roles col-1 border rounded border border-2 p-3">
           <div>
             <Icon_mecanico
-              width={100}
+              width={30}
               onClick={() => {
                 actions.selectionRoles("mecanico");
               }}
@@ -26,7 +26,7 @@ export const Roles = () => {
         </button>
 
         <div className="col-1 d-flex align-items-center p-3">
-          <h1>Mecanico</h1>
+          <h1 className="tituloRoles">Mecanico</h1>
         </div>
         <div className="col-5"></div>
       </div>
@@ -37,7 +37,7 @@ export const Roles = () => {
         <button className="boton_roles col-1 border rounded border border-3 p-3">
           <div>
             <Icon_clasificadora
-              width={100}
+              width={30}
               onClick={() => {
                 actions.selectionRoles("clasificadora");
               }}
@@ -46,7 +46,7 @@ export const Roles = () => {
         </button>
 
         <div className="col-1 d-flex align-items-center p-3">
-          <h1>Clasificadora</h1>
+          <h1 className="tituloRoles">Clasificadora</h1>
         </div>
         <div className="col-5"></div>
       </div>
@@ -57,7 +57,7 @@ export const Roles = () => {
         <button className="boton_roles col-1 border rounded border border-3 p-3">
           <div>
             <Icon_encargado
-              width={100}
+              width={30}
               onClick={() => {
                 actions.selectionRoles("encargado");
               }}
@@ -66,10 +66,11 @@ export const Roles = () => {
         </button>
 
         <div className="col-1 d-flex align-items-center p-3">
-          <h1>Encargado</h1>
+          <h1 className="tituloRoles">Encargado</h1>
         </div>
         <div className="col-5"></div>
       </div>
     </div>
   );
 };
+

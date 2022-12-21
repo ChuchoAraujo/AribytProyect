@@ -5,7 +5,6 @@ import { store, actions } from "../../store/flux";
 import { Context } from "../../store/appContext";
 import Icon_encargado from "../icons/icon_encargado";
 
-
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
@@ -13,8 +12,6 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let urlRole = "vista_" + store.roles;
-
-
 
   const access = () => {
     fetch(process.env.BACKEND_URL + "/api/acceso", {
@@ -88,7 +85,13 @@ export const Login = () => {
           <Form className="formulario">
             <div>
               <label htmlFor="email">Email</label>
-              <Field type="email" id="email" name="email" placeholder="Email" />
+              <Field
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                onKeyUp={(e) => setEmail(e.target.value)}
+              />
               <ErrorMessage
                 name="email"
                 component={() => <div className="error">{errors.email}</div>}
@@ -102,6 +105,7 @@ export const Login = () => {
                 id="password"
                 name="password"
                 placeholder="Password"
+                onKeyUp={(e) => setPassword(e.target.value)}
               />
               <ErrorMessage
                 name="password"

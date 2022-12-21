@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Icon_home from "./icons/icon_home";
 
 export const Navbar = () => {
 	const navigate = useNavigate();
@@ -13,9 +14,9 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-light bg-light">
-			<div className="container">
+			<div className="container p-2">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">Home</span>
+					<Icon_home width={50}/>
 				</Link>
 				
 				<button className="btn-success" onClick={logOut}>Logout</button>
