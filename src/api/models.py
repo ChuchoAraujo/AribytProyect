@@ -21,7 +21,7 @@ class User(db.Model):
         }
 
 class Tabla_clasificadora(db.Model):
-    id = db.Column(db.Integer, primary_key=True,)
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     horas = db.Column(db.Integer, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
@@ -44,7 +44,6 @@ class Tabla_clasificadora(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "id_tabla": self.id_tabla,
             "cajas": self.cajas,
             "articulo": self.articulo,
             "lote": self.lote,
