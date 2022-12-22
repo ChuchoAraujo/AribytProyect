@@ -3,6 +3,46 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export const Formulario_clasificadora = () => {
   const [enviarFormulario, setFormulario] = useState(false);
+  
+  const [cajas, setCajas] = useState("");
+  const [articulo, setArticulo] = useState("");
+  const [lote, setLote] = useState("");
+  const [jaulas, setJaulas] = useState("");
+  const [pedido, setPedido] = useState("");
+  const [personal, setPersonal] = useState("");
+  const [problema, setProblema] = useState("");
+  const [accion, setAccion] = useState("");
+  const [tiempo, setTiempo] = useState("");
+  const [velocidad, setVelocidad] = useState("");
+  const [gramos, setGramos] = useState("");
+
+// ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
+  const send = () => {
+    fetch(process.env.BACKEND_URL + "/api/clasificadora", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        "cajas": cajas, 
+        "articulo": articulo,
+        "lote": lote,
+        "jaulas": jaulas,
+        "pedido": pedido,
+        "personal": personal,
+        "problema": problema,
+        "accion": accion,
+        "tiempo": tiempo,
+        "velocidad": velocidad,
+        "gramos": gramos
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   return (
     <>
@@ -62,6 +102,17 @@ export const Formulario_clasificadora = () => {
           resetForm();
           console.log("Formulario enviado");
           setFormulario(true);
+          setCajas(valores.cajas);
+          setArticulo(valores.articulo);
+          setLote(valores.lote);
+          setJaulas(valores.jaulas);
+          setPedido(valores.pedido);
+          setPersonal(valores.personal);
+          setProblema(valores.problema);
+          setAccion(valores.accion);
+          setTiempo(valores.tiempo);
+          setVelocidad(valores.velocidad);
+          setGramos(valores.gramos);
           setTimeout(() => setFormulario(false), 5000);
         }}
       >
@@ -74,6 +125,7 @@ export const Formulario_clasificadora = () => {
                 id="cajas"
                 name="cajas"
                 placeholder="Número de cajas"
+                onKeyUp={(e) => setCajas(e.target.value)}
               />
               <ErrorMessage
                 name="cajas"
@@ -87,6 +139,7 @@ export const Formulario_clasificadora = () => {
                 id="articulo"
                 name="articulo"
                 placeholder="Codigo de Articulo"
+                onKeyUp={(e) => setArticulo(e.target.value)}
               />
               <ErrorMessage
                 name="articulo"
@@ -100,6 +153,7 @@ export const Formulario_clasificadora = () => {
                 id="lote"
                 name="lote"
                 placeholder="Numero Lote"
+                onKeyUp={(e) => setLote(e.target.value)}
               />
             </div>
             <div>
@@ -107,8 +161,9 @@ export const Formulario_clasificadora = () => {
               <Field
                 type="text"
                 id="jaulas"
-                name="jaluas"
+                name="jaulas"
                 placeholder="Numero de Jaulas"
+                onKeyUp={(e) => setJaulas(e.target.value)}
               />
             </div>
             <div>
@@ -118,15 +173,17 @@ export const Formulario_clasificadora = () => {
                 id="pedido"
                 name="pedido"
                 placeholder="Numero de pedido"
+                onKeyUp={(e) => setPedido(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="jaulas">personal</label>
+              <label htmlFor="personal">personal</label>
               <Field
                 as="textarea"
                 id="personal"
                 name="personal"
                 placeholder="Personal en la maquina"
+                onKeyUp={(e) => setPersonal(e.target.value)}
               />
             </div>
             <div>
@@ -136,6 +193,7 @@ export const Formulario_clasificadora = () => {
                 id="problema"
                 name="problema"
                 placeholder="Problemas ocurridos"
+                onKeyUp={(e) => setProblema(e.target.value)}
               />
             </div>
             <div>
@@ -145,24 +203,27 @@ export const Formulario_clasificadora = () => {
                 id="accion"
                 name="accion"
                 placeholder="Solucion al problema o problemas"
+                onKeyUp={(e) => setAccion(e.target.value)}
               />
             </div>
             <div>
               <label htmlFor="tiempo">tiempo</label>
               <Field
-                type="text"
+                type="number"
                 id="tiempo"
                 name="tiempo"
                 placeholder="Tiempo parada"
+                onKeyUp={(e) => setTiempo(e.target.value)}
               />
             </div>
             <div>
               <label htmlFor="velocidad">velocidad</label>
               <Field
-                type="velocidad"
+                type="number"
                 id="velocidad"
                 name="velocidad"
                 placeholder="Velocidad de la maquina"
+                onKeyUp={(e) => setVelocidad(e.target.value)}
               />
               <ErrorMessage
                 name="velocidad"
@@ -174,17 +235,20 @@ export const Formulario_clasificadora = () => {
             <div>
               <label htmlFor="gramos">gramos</label>
               <Field
-                type="text"
+                type="number"
                 id="gramos"
                 name="gramos"
                 placeholder="Gramos de la cola"
+                onKeyUp={(e) => setGramos(e.target.value)}
               />
               <ErrorMessage
                 name="gramos"
                 component={() => <div className="error">{errors.gramos}</div>}
               />
             </div>
-            <button type="submit">Enviar</button>
+            <button type="submit" onClick={send}>
+              Enviar
+            </button>
             {enviarFormulario && (
               <p className="exito">Formulario enviado con exito!</p>
             )}

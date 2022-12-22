@@ -12,6 +12,9 @@ export const Roles = () => {
   return (
     <div className="container text-center mt-5 row">
       <div className="row mt-3 mb-3">
+        <div>
+          <h1 className="mb-4">Selecciona tu área</h1>
+        </div>
         <button
           className="boton_roles border rounded border border-2 text-center col-4 p-3"
           onClick={() => {

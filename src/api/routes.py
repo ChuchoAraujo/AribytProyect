@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Tabla_clasificadora
 from api.utils import generate_sitemap, APIException
 import json
 from flask_jwt_extended import create_access_token
@@ -10,7 +10,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
-#-------------------------------------------------- CREACION RUTAS --------------------------------------------------------------------------------------#
+#-------------------------------------------------- USUARIOS --------------------------------------------------------------------------------------#
 
 #---------------------------------------- GET / USERS ----------------------------------------#
 
@@ -55,3 +55,40 @@ def protected():
         "user": get_jwt_identity()
     }
     return jsonify(response_body), 200
+
+
+#-------------------------------------------------- ROLES --------------------------------------------------------------------------------------#
+
+@api.route('/clasificadora', methods=['POST'])
+def clasificadora():
+
+
+    data= request.data
+    data = json.loads(data)
+    registro = Tabla_clasificadora( 
+        cajas = data["cajas"], 
+        articulo = data["articulo"], 
+        lote = data["lote"],
+        jaulas = data["jaulas"],
+        pedido = data["pedido"],
+        personal = data["personal"],
+        problema = data["problema"],
+        accion = data["accion"],
+        tiempo = data["tiempo"],
+        velocidad = data["velocidad"],
+        gramos = data["gramos"],
+
+        )
+
+    db.session.add(registro)
+    db.session.commit()
+
+    response_body ={"msg": "ok"}
+    return jsonify(registro.serialize())
+
+
+
+
+ 
+
+    

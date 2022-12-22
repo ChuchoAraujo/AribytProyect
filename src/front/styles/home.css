@@ -1,6 +1,45 @@
 /* 
-    General Styles used on every website (Don't Repeat Yourself)
+   BODY
 */
+
+
+
+
+
+/*NAVEGADOR*/
+
+.iconos_navegador {
+	font-size: 30px;
+	margin-right: 5px;
+	color: #4dada4;
+}
+
+.iconos_navegador_home{
+	font-size: 40px;
+	margin-right: 5px;
+	color: #4dada4;
+}
+
+.boton_logOut {
+	border-radius: 5px;
+	padding: 6px;
+	background-color: #4dada4;
+	color: whitesmoke;
+}
+
+/*HOME*/
+.boton_home {
+	border-radius: 5px;
+	padding: 8px;
+	background-color: #4dada4;
+	color: whitesmoke;
+}
+
+
+
+
+
+/*FORMULARIO*/
 
 .formulario {
 	min-width: 600px;
@@ -77,7 +116,7 @@
 }
 
 
-/*BOTON ROLES*/
+/*BOTONES ROLES*/
 
 button{
 	padding: 5px;

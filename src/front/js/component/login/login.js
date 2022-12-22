@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { store, actions } from "../../store/flux";
 import { Context } from "../../store/appContext";
-import Icon_encargado from "../icons/icon_encargado";
+
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -82,7 +82,8 @@ export const Login = () => {
         }}
       >
         {({ errors }) => (
-          <Form className="formulario">
+          <Form className="formulario container row">
+            <h1 className="mb-5">Login</h1>
             <div>
               <label htmlFor="email">Email</label>
               <Field

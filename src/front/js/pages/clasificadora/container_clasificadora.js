@@ -8,7 +8,7 @@ export const Container_clasificadora = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-
+  // ---------------------------- AUTENTIFICACION DEL TOKEN----------------------------------------------------
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/private", {
       method: "GET",
@@ -22,10 +22,9 @@ export const Container_clasificadora = () => {
         if (!result.done) {
           navigate("/");
         }
-  })
+      })
       .catch((error) => console.log("error", error));
   }, []);
-
 
 
 

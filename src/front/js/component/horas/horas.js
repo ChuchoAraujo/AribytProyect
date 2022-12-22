@@ -9,7 +9,7 @@ export const Horas = () => {
     return (
       <>
         <div className="mt-2">
-          <Link to={"/vista_clasificadora/" + (key + 1)}>
+          <Link to={"/vista_login/vista_clasificadora/" + (key + 1)}>
             <button
               className="btn btn-secondary"
               style={{ width: "200px" }}

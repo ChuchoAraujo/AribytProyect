@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Icon_aribyt from "./icons/icon_aribyt";
 import Icon_home from "./icons/icon_home";
-import Icon_letras from "./icons/icon_letras";
+import { ImMail4 } from "react-icons/im";
+import { AiFillGithub } from "react-icons/ai";
+import { MdContactSupport } from "react-icons/md";
+import { BsLinkedin } from "react-icons/bs";
+import { TbDoorExit } from "react-icons/tb";
+import { ImHome } from "react-icons/im";
 
 export const Navbar = () => {
 	const navigate = useNavigate();
@@ -15,20 +19,25 @@ export const Navbar = () => {
 
 
 	return (
-    <nav className="navbar navbar-light bg-light text-center row">
-      <Link to="/" className="row">
-
-        <div className="col-1">
-          <Icon_aribyt width={100} />
-        </div>
+    <nav className="navbar bg-light text-center row p-3">
+      <div className="col-1"></div>
+      <Link to="/" className="col-1">
+        <ImHome className="iconos_navegador_home" />
       </Link>
 
-      <div className="col-8"></div>
+      <div className="col-6"></div>
+      <div className="col-2 text-end">
+        <BsLinkedin className="iconos_navegador" />
+        <AiFillGithub className="iconos_navegador" />
+        <ImMail4 className="iconos_navegador" />
+        <MdContactSupport className="iconos_navegador" />
+      </div>
       <div className="col-1">
-        <button className="btn-success" onClick={logOut}>
-          Logout
+        <button className="boton_logOut" onClick={logOut}>
+          <TbDoorExit /> Logout
         </button>
       </div>
+      <div className="col-1"></div>
     </nav>
   );
 };

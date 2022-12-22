@@ -21,8 +21,8 @@ class User(db.Model):
         }
 
 class Tabla_clasificadora(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    id_tabla = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     horas = db.Column(db.Integer, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
     cajas = db.Column(db.String, unique=False, nullable=True)
@@ -34,7 +34,6 @@ class Tabla_clasificadora(db.Model):
     problema = db.Column(db.String, unique=False, nullable=False)
     accion = db.Column(db.String, unique=False, nullable=False)
     tiempo = db.Column(db.Float, unique=False, nullable=False)
-    prueba = db.Column(db.String, unique=False, nullable=False)
     velocidad = db.Column(db.Float, unique=False, nullable=True)
     gramos = db.Column(db.Float, unique=False, nullable=True)
 
@@ -44,6 +43,7 @@ class Tabla_clasificadora(db.Model):
     def serialize(self):
         return {
             "id": self.id,
+            "user_id": self.user_id,
             "id_tabla": self.id_tabla,
             "cajas": self.cajas,
             "articulo": self.articulo,
@@ -54,7 +54,6 @@ class Tabla_clasificadora(db.Model):
             "problema": self.problema,
             "accion": self.accion,
             "tiempo": self.tiempo,
-            "prueba": self.prueba,
             "velocidad": self.velocidad,
             "gramos": self.gramos,
         }

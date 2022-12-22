@@ -10,11 +10,11 @@ export const Logo = () => {
 
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-5">
       <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
-          <Icon_simbolo width={400} />
+          <Icon_aribyt width={800} />
         </div>
         <div className="col-2"></div>
       </div>
