@@ -8,7 +8,7 @@ export const Horas = () => {
   return horas.map((element, key) => {
     return (
       <>
-        <div className="mt-2">
+        <div className="mt-2" key={element.key}>
           <Link to={"/vista_login/vista_clasificadora/" + (key + 1)}>
             <button
               className="btn btn-secondary"

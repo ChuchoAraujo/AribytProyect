@@ -113,6 +113,7 @@ export const Formulario_clasificadora = () => {
           setTiempo(valores.tiempo);
           setVelocidad(valores.velocidad);
           setGramos(valores.gramos);
+          console.log(valores)
           setTimeout(() => setFormulario(false), 5000);
         }}
       >

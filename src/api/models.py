@@ -1,4 +1,9 @@
+
 from flask_sqlalchemy import SQLAlchemy
+import datetime
+import math
+from sqlalchemy.orm import relationship
+
 
 db = SQLAlchemy()
 
@@ -20,8 +25,8 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Tabla_clasificadora(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class TablaClasificadora(db.Model): 
+    id = db.Column(db.Integer, unique=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     horas = db.Column(db.Integer, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
@@ -38,7 +43,7 @@ class Tabla_clasificadora(db.Model):
     gramos = db.Column(db.Float, unique=False, nullable=True)
 
     def __repr__(self):
-        return f'<Tabla_clasificadora {self.id}>'
+        return f'<TablaClasificadora {self.fecha}>'
 
     def serialize(self):
         return {
@@ -58,14 +63,14 @@ class Tabla_clasificadora(db.Model):
         }
 
 
-class Tabla_mecanico(db.Model):
+class TablaMecanico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_tabla = db.Column(db.Integer, primary_key=True)
     problema = db.Column(db.String, unique=True, nullable=True)
     accion = db.Column(db.String, unique=True, nullable=True)
 
     def __repr__(self):
-        return f'<Tabla_mecanico {self.id}>'
+        return f'<TablaMecanico {self.id}>'
 
     def serialize(self):
         return {
@@ -73,4 +78,17 @@ class Tabla_mecanico(db.Model):
             "id_tabla": self.id_tabla,
             "problema": self.problema,
             "accion": self.accion
+        }
+
+class TestTable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<TestTable %r>' % self.name
+    
+    def serialize(self):
+        return { 
+            "id": self.id,
+            "name": self.name
         }
