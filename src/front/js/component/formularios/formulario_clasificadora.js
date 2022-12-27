@@ -15,6 +15,10 @@ export const Formulario_clasificadora = () => {
   const [tiempo, setTiempo] = useState("");
   const [velocidad, setVelocidad] = useState("");
   const [gramos, setGramos] = useState("");
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
 
 // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
   const send = () => {
@@ -24,7 +28,8 @@ export const Formulario_clasificadora = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ 
-        "cajas": cajas, 
+        "user_id":"1",
+        "cajas": cajas,
         "articulo": articulo,
         "lote": lote,
         "jaulas": jaulas,
@@ -34,7 +39,9 @@ export const Formulario_clasificadora = () => {
         "accion": accion,
         "tiempo": tiempo,
         "velocidad": velocidad,
-        "gramos": gramos
+        "gramos": gramos,
+        "fecha":`${month}/${day}/${year}`,
+        "horas":"1",
       }),
     })
       .then((response) => response.json())

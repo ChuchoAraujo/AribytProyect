@@ -7,8 +7,11 @@ from api.utils import generate_sitemap, APIException
 import json
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_cors import CORS, cross_origin
 
 api = Blueprint('api', __name__)
+
+CORS(api)
 
 #-------------------------------------------------- USUARIOS --------------------------------------------------------------------------------------#
 
@@ -59,8 +62,9 @@ def protected():
 
 #-------------------------------------------------- ROLES --------------------------------------------------------------------------------------#
 
-@api.route('/clasificadora', methods=['POST'])
 
+@api.route('/clasificadora', methods=['POST'])
+@cross_origin()
 def clasificadora():
     
     request_data = request.get_json(force=True)
