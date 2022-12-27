@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
+import {store} from "../../store/flux";
+import { Context } from "../../store/appContext";
 
 export const Formulario_clasificadora = () => {
   const [enviarFormulario, setFormulario] = useState(false);
-  
+  const navigate = useNavigate();
   const [cajas, setCajas] = useState("");
   const [articulo, setArticulo] = useState("");
   const [lote, setLote] = useState("");
@@ -19,6 +22,7 @@ export const Formulario_clasificadora = () => {
   let day = today.getDate();
   let month = today.getMonth() + 1;
   let year = today.getFullYear();
+  const { store } = useContext(Context);
 
 // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
   const send = () => {
@@ -41,14 +45,18 @@ export const Formulario_clasificadora = () => {
         "velocidad": velocidad,
         "gramos": gramos,
         "fecha":`${month}/${day}/${year}`,
-        "horas":"1",
+        "horas":store.setHoras,
       }),
     })
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
+        
       })
       .catch((error) => console.log("error", error));
+
+      
+      
   };
 
   return (
@@ -254,7 +262,8 @@ export const Formulario_clasificadora = () => {
                 component={() => <div className="error">{errors.gramos}</div>}
               />
             </div>
-            <button type="submit" onClick={send}>
+            <button type="submit" onClick={()=> {send 
+              navigate(-1)}}>
               Enviar
             </button>
             {enviarFormulario && (

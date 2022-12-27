@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			horas:["1", "2", "3", "4", "5", "6", "7", "8"],
+			setHoras:[],
 			message: null,
 			roles: "",
 			demo: [

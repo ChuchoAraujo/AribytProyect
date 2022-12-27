@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-import { FormularioClasificadora } from "../formularios/formulario_clasificadora";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import {store} from "../../store/flux";
+import { Context } from "../../store/appContext";
 
 export const Horas = () => {
-  const [horas, setHoras] = useState(["1", "2", "3", "4", "5", "6", "7", "8"]);
+  const { store } = useContext(Context);
+  
+  const setearHoras = (horas)=>{
+    console.log(horas)
+  } 
 
-  return horas.map((element, key) => {
+  return store.horas.map((element, key) => {
+    
     return (
       <>
+
         <div className="mt-2" key={element.key}>
-          <Link to={"/vista_login/vista_clasificadora/" + (key + 1)}>
+          <Link to={"/vista_login/vista_clasificadora/" + (key + 1) }>
             <button
               className="btn btn-secondary"
               style={{ width: "200px" }}
               id={key}
+              onClick={setearHoras("hola")}
             >
               {element}
             </button>
