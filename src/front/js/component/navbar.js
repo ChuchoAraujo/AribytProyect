@@ -15,25 +15,22 @@ export const Navbar = () => {
 
 
 	return (
-    <nav className="containerNav text-center row">
-      <div className="col-1"></div>
-      <Link to="/" className="col-1">
-        <ImHome className="iconos_navegador_home" />
-      </Link>
-
-      <div className="col-6"></div>
-      <div className="col-2 text-end">
-          <Link to="/vista_login">
-            <button className="boton_home">Login!</button>
-          </Link>
-  
-      </div>
+    <nav className="containerNav container-fluid text-center row">
       <div className="col-1">
+        <Link to="/">
+          <ImHome className="iconos_navegador_home" />
+        </Link>
+      </div>
+      <div className="col-9"></div>
+      
+      <div className="col-2">
+        <Link to="/vista_login">
+          <button className="boton_home me-3">Login</button>
+        </Link>
         <button className="boton_logOut" onClick={logOut}>
           <TbDoorExit /> Logout
         </button>
       </div>
-      <div className="col-1"></div>
     </nav>
   );
 };
