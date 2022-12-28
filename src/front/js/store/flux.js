@@ -1,63 +1,69 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
-			horas:["1", "2", "3", "4", "5", "6", "7", "8"],
-			setHoras:[],
-			message: null,
-			roles: "",
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+    store: {
+      horas: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      inputHora: [],
+      message: null,
+      roles: "",
+      demo: [
+        {
+          title: "FIRST",
+          background: "white",
+          initial: "white",
+        },
+        {
+          title: "SECOND",
+          background: "white",
+          initial: "white",
+        },
+      ],
+    },
+    actions: {
+      // Use getActions to call a function within a fuction
+      exampleFunction: () => {
+        getActions().changeColor(0, "green");
+      },
 
-		selectionRoles: (rol) => {
-			getStore.roles = rol
-			setStore({roles: rol})
-			console.log("Se ha seleccionado el:" + getStore.roles)
-		},
+      selectionRoles: (rol) => {
+        getStore.roles = rol;
+        setStore({ roles: rol });
+        console.log("Se ha seleccionado el:" + getStore.roles);
+      },
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+      selectionHora: (hora) => {
+        getStore.inputHora = hora;
+        setStore({ inputHora: hora });
+        console.log("Se ha seleccionado la hora:" + getStore.inputHora);
+      },
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+      getMessage: async () => {
+        try {
+          // fetching data from the backend
+          const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+          const data = await resp.json();
+          setStore({ message: data.message });
+          // don't forget to return something, that is how the async resolves
+          return data;
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      changeColor: (index, color) => {
+        //get the store
+        const store = getStore();
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+        //we have to loop the entire demo array to look for the respective index
+        //and change its color
+        const demo = store.demo.map((elm, i) => {
+          if (i === index) elm.background = color;
+          return elm;
+        });
+
+        //reset the global store
+        setStore({ demo: demo });
+      },
+    },
+  };
 };
 
 export default getState;

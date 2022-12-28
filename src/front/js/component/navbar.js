@@ -14,12 +14,13 @@ export const Navbar = () => {
 
 	const logOut = () => {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/")
+    console.log("Token eliminado!! me piro vampiro!!");
   };
 
 
 	return (
-    <nav className="navbar bg-light text-center row p-3">
+    <nav className="navegador text-center row p-3">
       <div className="col-1"></div>
       <Link to="/" className="col-1">
         <ImHome className="iconos_navegador_home" />

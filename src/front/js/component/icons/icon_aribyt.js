@@ -2,16 +2,13 @@ import * as React from "react";
 
 const Icon_aribyt = (props) => (
   <svg
-  // className="efectoIcon"
+    // className="efectoIcon"
     id="Capa_2"
     data-name="Capa 2"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 386.89 142.37"
     {...props}
   >
-    <defs>
-      <style>{".cls-1{fill:#4dada4}"}</style>
-    </defs>
     <g id="Capa_1-2" data-name="Capa 1">
       <path
         className="cls-1"

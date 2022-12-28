@@ -43,7 +43,7 @@ class TablaClasificadora(db.Model):
     gramos = db.Column(db.Float, unique=False, nullable=True)
 
     def __repr__(self):
-        return f'<TablaClasificadora {self.fecha}>'
+        return f'<TablaClasificadora {self.id}>'
 
     def serialize(self):
         return {

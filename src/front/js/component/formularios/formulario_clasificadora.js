@@ -24,15 +24,19 @@ export const Formulario_clasificadora = () => {
   let year = today.getFullYear();
   const { store } = useContext(Context);
 
+  const back = () => {
+    navigate(-1)
+  }
+
 // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
-  const send = () => {
+  const sendDataClasificadora = () => {
     fetch(process.env.BACKEND_URL + "/api/clasificadora", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
-        "user_id":"1",
+      body: JSON.stringify({
+        "user_id": "1",
         "cajas": cajas,
         "articulo": articulo,
         "lote": lote,
@@ -44,14 +48,13 @@ export const Formulario_clasificadora = () => {
         "tiempo": tiempo,
         "velocidad": velocidad,
         "gramos": gramos,
-        "fecha":`${month}/${day}/${year}`,
-        "horas":store.setHoras,
+        "fecha": `${month}/${day}/${year}`,
+        "horas": store.inputHora,
       }),
     })
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        
       })
       .catch((error) => console.log("error", error));
 
@@ -128,7 +131,7 @@ export const Formulario_clasificadora = () => {
           setTiempo(valores.tiempo);
           setVelocidad(valores.velocidad);
           setGramos(valores.gramos);
-          console.log(valores)
+          console.log(valores);
           setTimeout(() => setFormulario(false), 5000);
         }}
       >
@@ -262,13 +265,25 @@ export const Formulario_clasificadora = () => {
                 component={() => <div className="error">{errors.gramos}</div>}
               />
             </div>
-            <button type="submit" onClick={()=> {send 
-              navigate(-1)}}>
+            <button
+              type="submit"
+              onClick={() => {
+                sendDataClasificadora;
+                console.log("Enviando formulario clasificadora");
+              }}
+            >
               Enviar
             </button>
             {enviarFormulario && (
               <p className="exito">Formulario enviado con exito!</p>
             )}
+            <button
+              className="btn-success mt-3"
+              type="button"
+              onClick={back}
+            >
+              Back
+            </button>
           </Form>
         )}
       </Formik>

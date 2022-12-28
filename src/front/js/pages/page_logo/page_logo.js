@@ -13,9 +13,8 @@ export const Page_logo = () => {
         <Logo />
       </div>
       <div className="mt-5">
-        <h1 className="mt-3">Házlo fácil! Házlo mejor!</h1>
         <Link to="/vista_login" >
-          <button className="mt-2 boton_home">Start!</button>
+          <button className="mt-2 boton_home">Login!</button>
         </Link>
       </div>
     </div>

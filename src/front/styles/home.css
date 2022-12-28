@@ -1,38 +1,47 @@
 /* 
    BODY
 */
-
-
+body {
+	background-color: #4dada4;
+}
+.icono {
+	fill: whitesmoke;
+}
 
 
 
 /*NAVEGADOR*/
-
+.navegador {
+	border-width: 5px;
+	border: #1f1f1f;
+}
 .iconos_navegador {
 	font-size: 30px;
 	margin-right: 5px;
-	color: #4dada4;
+	color: whitesmoke;
 }
 
 .iconos_navegador_home{
 	font-size: 40px;
 	margin-right: 5px;
-	color: #4dada4;
+	color: whitesmoke;
 }
 
 .boton_logOut {
 	border-radius: 5px;
 	padding: 6px;
-	background-color: #4dada4;
-	color: whitesmoke;
+	background-color: whitesmoke;
+	color: #4dada4;
+	font-weight: 700;
 }
 
 /*HOME*/
 .boton_home {
 	border-radius: 5px;
-	padding: 8px;
-	background-color: #4dada4;
-	color: whitesmoke;
+	padding: 6px;
+	background-color: whitesmoke;
+	color: #4dada4;
+	font-weight: 700;
 }
 
 

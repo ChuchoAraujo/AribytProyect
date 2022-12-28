@@ -95,6 +95,8 @@ def clasificadora():
         'registro': registro.serialize()
         }), 201
 
+
+
 @api.route('/test', methods=['POST'])
 def handle_test():
 

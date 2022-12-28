@@ -14,7 +14,7 @@ export const Logo = () => {
       <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
-          <Icon_aribyt width={800} />
+          <Icon_aribyt width={1000} className="icono" />
         </div>
         <div className="col-2"></div>
       </div>

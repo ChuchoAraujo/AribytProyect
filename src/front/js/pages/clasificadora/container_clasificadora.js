@@ -19,6 +19,7 @@ export const Container_clasificadora = () => {
     })
       .then((response) => response.json())
       .then((result) => {
+        console.log("Muy bien !! ... Token encontrado");
         if (!result.done) {
           navigate("/");
         }
