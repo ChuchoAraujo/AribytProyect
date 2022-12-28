@@ -49,7 +49,7 @@ export const Formulario_clasificadora = () => {
         "velocidad": velocidad,
         "gramos": gramos,
         "fecha": `${month}/${day}/${year}`,
-        "horas": store.inputHora,
+        "horas": store.hora
       }),
     })
       .then((response) => response.json())
@@ -268,10 +268,7 @@ export const Formulario_clasificadora = () => {
             </div>
             <button
               type="submit"
-              onClick={() => {
-                sendDataClasificadora;
-                console.log("Enviando formulario clasificadora");
-              }}
+              onClick={sendDataClasificadora}
             >
               Enviar
             </button>
