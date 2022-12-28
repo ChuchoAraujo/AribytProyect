@@ -1,30 +1,52 @@
 /* 
-   BODY
+   BODY RESET
 */
-body {
-	background-color: #4dada4;
-}
-.icono {
-	fill: whitesmoke;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
+
+/*PAGES*/
+.pageLogo {
+	background-color: #4dada4;
+	padding: 100px;
+	height: auto;
+	width: auto;
+}
+
+.footer {
+	background-color: #e2e2e2;
+	padding: 50px;
+	width: 1915px;
+	margin-top: 50px;
+}
+
+/*ICONO HOME*/
+.icono {
+	fill: whitesmoke;
+	width: 600px;
+	height: auto;
+	padding: 80px;
+}
 
 
 /*NAVEGADOR*/
-.navegador {
-	border-width: 5px;
-	border: #1f1f1f;
+.containerNav {
+	background-color: #e2e2e2;
+	padding: 20px;
 }
-.iconos_navegador {
+.iconos_footer {
 	font-size: 30px;
 	margin-right: 5px;
-	color: whitesmoke;
+	color: #4dada4;
 }
 
 .iconos_navegador_home{
 	font-size: 40px;
 	margin-right: 5px;
-	color: whitesmoke;
+	color: #4dada4;
 }
 
 .boton_logOut {
@@ -96,7 +118,7 @@ body {
 
 .formulario button[type="submit"] {
 	display: block;
-	background: #0085FF;
+	background: #4dada4;
 	font-weight: 600;
 	font-family: 'Open Sans', sans-serif;
 	border: none;
@@ -128,7 +150,7 @@ body {
 /*BOTONES ROLES*/
 
 button{
-	padding: 5px;
+	padding: 3px;
 	border-radius: 5px;
 }
 
@@ -160,4 +182,9 @@ button{
 
 .tituloRoles {
 	font-size: 20px;
+}
+
+
+.containerFormClasificadora{
+	background-color: #4dada4;
 }

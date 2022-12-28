@@ -34,9 +34,9 @@ export const Formulario_clasificadora = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        "user_id": "1",
         "cajas": cajas,
         "articulo": articulo,
         "lote": lote,
@@ -65,6 +65,7 @@ export const Formulario_clasificadora = () => {
   return (
     <>
       <Formik
+        className="containerFormClasificadora"
         initialValues={{
           cajas: "",
           articulo: "",

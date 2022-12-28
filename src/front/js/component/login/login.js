@@ -11,7 +11,7 @@ export const Login = () => {
   const [enviarFormulario, setFormulario] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let urlRole = "vista_" + store.roles;
+  let urlRole = "vista_" + store.role;
 
   const access = () => {
     fetch(process.env.BACKEND_URL + "/api/acceso", {
@@ -22,7 +22,7 @@ export const Login = () => {
       body: JSON.stringify({
         "email": email,
         "password": password,
-        "role": store.roles,
+        "role": store.role,
       }),
     })
       .then((response) => response.json())
@@ -40,6 +40,7 @@ export const Login = () => {
   return (
     <>
       <Formik
+        className="containerFormLogin"
         initialValues={{
           email: "",
           password: "",

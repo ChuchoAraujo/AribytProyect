@@ -10,8 +10,8 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container-fluid text-center mt-5 row">
-      <div className="p-5">
+    <div className="container-fluid text-center row pageLogo">
+      <div>
         <Page_logo />
       </div>
     </div>

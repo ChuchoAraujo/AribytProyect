@@ -12,7 +12,7 @@ export const Vista_login = () => {
 
 
 	return (
-    <div className="container-fluid text-center mt-5 row">
+    <div className="container-fluid text-center row">
       <div className="col-4"></div>
       <div className="paginaLogo col-4">
         <Roles />

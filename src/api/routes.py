@@ -70,7 +70,7 @@ def clasificadora():
     request_data = request.get_json(force=True)
  
     registro = TablaClasificadora( 
-        user_id = request_data['user_id'], 
+        user_id = get_jwt_identity(), 
         cajas = request_data['cajas'], 
         articulo = request_data['articulo'], 
         lote = request_data['lote'],

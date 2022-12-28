@@ -2,9 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
     store: {
       horas: ["1", "2", "3", "4", "5", "6", "7", "8"],
-      inputHora: [],
+      hora: "",
       message: null,
-      roles: "",
+      role: "",
       demo: [
         {
           title: "FIRST",
@@ -24,16 +24,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         getActions().changeColor(0, "green");
       },
 
-      selectionRoles: (rol) => {
-        getStore.roles = rol;
-        setStore({ roles: rol });
-        console.log("Se ha seleccionado el:" + getStore.roles);
+      selectionRoles: (role) => {
+        // const store = getStore()
+        setStore({ role: role });
+        console.log("Se ha seleccionado el:" + role);
       },
 
       selectionHora: (hora) => {
-        getStore.inputHora = hora;
-        setStore({ inputHora: hora });
-        console.log("Se ha seleccionado la hora:" + getStore.inputHora);
+        // const store = getStore()
+        setStore({ hora: hora });
+        console.log("Se ha seleccionado la hora:" + hora);
       },
 
       getMessage: async () => {
