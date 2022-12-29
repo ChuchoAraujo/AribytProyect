@@ -5,6 +5,7 @@ import {store} from "../../store/flux";
 import { Context } from "../../store/appContext";
 
 export const Formulario_clasificadora = () => {
+  const { store } = useContext(Context);
   const [enviarFormulario, setFormulario] = useState(false);
   const navigate = useNavigate();
   const [cajas, setCajas] = useState("");
@@ -18,17 +19,21 @@ export const Formulario_clasificadora = () => {
   const [tiempo, setTiempo] = useState("");
   const [velocidad, setVelocidad] = useState("");
   const [gramos, setGramos] = useState("");
-  let today = new Date();
-  let day = today.getDate();
-  let month = today.getMonth() + 1;
-  let year = today.getFullYear();
-  const { store } = useContext(Context);
+  //OBTENER FECHA Y HORA
+
+  let todayFecha = new Date();
+  let nowFecha = todayFecha.toLocaleDateString("en-US");
+  let todayHora = new Date();
+  let nowHora = todayHora.toLocaleTimeString("en-US");
+  console.log(nowFecha)
+  console.log(nowHora);
+
 
   const back = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
-// ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
+  // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
   const sendDataClasificadora = () => {
     fetch(process.env.BACKEND_URL + "/api/clasificadora", {
       method: "POST",
@@ -48,8 +53,8 @@ export const Formulario_clasificadora = () => {
         "tiempo": tiempo,
         "velocidad": velocidad,
         "gramos": gramos,
-        "fecha": `${month}/${day}/${year}`,
-        "horas": store.hora
+        "fecha": nowFecha,
+        "horas": nowHora,
       }),
     })
       .then((response) => response.json())
@@ -57,9 +62,6 @@ export const Formulario_clasificadora = () => {
         console.log(result);
       })
       .catch((error) => console.log("error", error));
-
-      
-      
   };
 
   return (
@@ -266,20 +268,13 @@ export const Formulario_clasificadora = () => {
                 component={() => <div className="error">{errors.gramos}</div>}
               />
             </div>
-            <button
-              type="submit"
-              onClick={sendDataClasificadora}
-            >
+            <button type="submit" onClick={sendDataClasificadora}>
               Enviar
             </button>
             {enviarFormulario && (
               <p className="exito">Formulario enviado con exito!</p>
             )}
-            <button
-              className="btn-success mt-3"
-              type="button"
-              onClick={back}
-            >
+            <button className="btn-success mt-3" type="button" onClick={back}>
               Back
             </button>
           </Form>
