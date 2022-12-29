@@ -19,16 +19,15 @@
 .footer {
 	background-color: #e2e2e2;
 	padding: 50px;
-	width: 1915px;
-	margin-top: 50px;
+	width: auto;
 }
 
 /*ICONO HOME*/
 .icono {
 	fill: whitesmoke;
-	width: 600px;
+	width: 800px;
 	height: auto;
-	padding: 80px;
+	padding: 150px;
 }
 
 
@@ -43,27 +42,30 @@
 	color: #4dada4;
 }
 
-.iconos_navegador_home{
-	font-size: 40px;
+.boton_logOut {
+	width: auto;
+	border-radius: 5px;
+	border-style: none;
+	padding: 6px;
+	background-color: whitesmoke;
+	color: #4dada4;
+	font-weight: 700;
+}
+
+.botonLogin {
+	width: auto;
+	border-style: none;
+	border-radius: 5px;
+	padding: 6px;
+	background-color: whitesmoke;
+	color: #4dada4;
+	font-weight: 700;
+}
+
+.boton_home {
+	font-size: 35px;
 	margin-right: 5px;
 	color: #4dada4;
-}
-
-.boton_logOut {
-	border-radius: 5px;
-	padding: 6px;
-	background-color: whitesmoke;
-	color: #4dada4;
-	font-weight: 700;
-}
-
-/*HOME*/
-.boton_home {
-	border-radius: 5px;
-	padding: 6px;
-	background-color: whitesmoke;
-	color: #4dada4;
-	font-weight: 700;
 }
 
 

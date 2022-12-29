@@ -18,14 +18,14 @@ export const Navbar = () => {
     <nav className="containerNav container-fluid text-center row">
       <div className="col-1">
         <Link to="/">
-          <ImHome className="iconos_navegador_home" />
+          <ImHome className="boton_home" />
         </Link>
       </div>
       <div className="col-9"></div>
-      
+
       <div className="col-2">
         <Link to="/vista_login">
-          <button className="boton_home me-3">Login</button>
+          <button className="me-3 botonLogin">Login</button>
         </Link>
         <button className="boton_logOut" onClick={logOut}>
           <TbDoorExit /> Logout
