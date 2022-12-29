@@ -65,12 +65,14 @@ def protected():
 
 @api.route('/clasificadora', methods=['POST'])
 @cross_origin()
+@jwt_required()
 def clasificadora():
     
     request_data = request.get_json(force=True)
-
+    
     try:
         registro = TablaClasificadora( 
+        user_id = request_data[get_jwt_identity()],
         cajas = request_data['cajas'], 
         articulo = request_data['articulo'], 
         lote = request_data['lote'],
@@ -92,7 +94,10 @@ def clasificadora():
     except Exception as e:
         return jsonify({"error": str(e)}), 402
 
-    response_body = {"msg": "register ok"}
+    response_body = {
+        "msg": "User create",
+        "user": get_jwt_identity()
+        }
     return jsonify(response_body), 201
 
   

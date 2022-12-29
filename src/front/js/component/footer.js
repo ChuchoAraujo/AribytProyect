@@ -8,7 +8,7 @@ import { ImHome } from "react-icons/im";
 
 export const Footer = () => (
   <div className="footer container-fluid text-center">
-    <footer>
+    <footer className="mt-4">
       <p>Copyright Aribyt 2022</p>
       <div>
         <BsLinkedin className="iconos_footer" />

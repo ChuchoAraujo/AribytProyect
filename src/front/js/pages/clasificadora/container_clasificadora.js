@@ -9,23 +9,7 @@ export const Container_clasificadora = () => {
   const navigate = useNavigate();
 
   // ---------------------------- AUTENTIFICACION DEL TOKEN----------------------------------------------------
-  useEffect(() => {
-    fetch(process.env.BACKEND_URL + "/api/private", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("Muy bien !! ... Token encontrado");
-        if (!result.done) {
-          navigate("/");
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
+
 
 
 

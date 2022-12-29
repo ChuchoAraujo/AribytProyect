@@ -9,7 +9,7 @@ export const Page_roles = () => {
 
   return (
        <div className="text-center">
-            <div className="row">
+            <div>
                 <Roles />
             </div>
 

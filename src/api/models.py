@@ -28,7 +28,7 @@ class User(db.Model):
 class TablaClasificadora(db.Model): 
     id = db.Column(db.Integer, unique=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    horas = db.Column(db.Integer, unique=False, nullable=True)
+    horas = db.Column(db.String, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
     cajas = db.Column(db.String, unique=False, nullable=True)
     articulo = db.Column(db.String, unique=True, nullable=True)

@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import {store} from "../../store/flux";
@@ -21,19 +21,39 @@ export const Formulario_clasificadora = () => {
   const [gramos, setGramos] = useState("");
   //OBTENER FECHA Y HORA
 
-  let todayFecha = new Date();
-  let nowFecha = todayFecha.toLocaleDateString("en-US");
-  let todayHora = new Date();
-  let nowHora = todayHora.toLocaleTimeString("en-US");
-  console.log(nowFecha)
-  console.log(nowHora);
-
+  //OBTENER FECHA Y HORA
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
+  var todayHora = new Date();
+  var nowHora = todayHora.toLocaleTimeString("en-US");
 
   const back = () => {
     navigate(-1);
   };
 
   // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
+
+    useEffect(() => {
+      fetch(process.env.BACKEND_URL + "/api/private", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Muy bien !! ... Token encontrado", result);
+          // if (!result.done) {
+          //   navigate("/");
+          // }
+        })
+        .catch((error) => console.log("error", error));
+    }, []);
+
+
   const sendDataClasificadora = () => {
     fetch(process.env.BACKEND_URL + "/api/clasificadora", {
       method: "POST",
@@ -42,6 +62,7 @@ export const Formulario_clasificadora = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
+        "user_id": "Bearer " + localStorage.getItem("token"),
         "cajas": cajas,
         "articulo": articulo,
         "lote": lote,
@@ -53,7 +74,7 @@ export const Formulario_clasificadora = () => {
         "tiempo": tiempo,
         "velocidad": velocidad,
         "gramos": gramos,
-        "fecha": nowFecha,
+        "fecha": `${month}/${day}/${year}`,
         "horas": nowHora,
       }),
     })

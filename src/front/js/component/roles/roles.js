@@ -10,38 +10,37 @@ export const Roles = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container text-center mt-5 row">
-      <div className="row mt-3 mb-3">
-        <div>
-          <h1 className="mb-4">Selecciona tu área</h1>
-        </div>
+    <div className="text-center mt-5 row">
+      <h1 className="mb-4">Selecciona tu área</h1>
+
+      <div className="row containerRoles">
         <button
-          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          className="boton_roles col-4"
           onClick={() => {
             actions.selectionRoles("mecanico");
           }}
         >
-          <Icon_mecanico width={30} />
+          <Icon_mecanico className="iconRoles iconMecanico" />
           <h1 className="tituloRoles">Mecanico</h1>
         </button>
 
         <button
-          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          className="boton_roles col-4"
           onClick={() => {
             actions.selectionRoles("clasificadora");
           }}
         >
-          <Icon_clasificadora width={30} />
+          <Icon_clasificadora className="iconRoles" />
           <h1 className="tituloRoles">Clasificadora</h1>
         </button>
 
         <button
-          className="boton_roles border rounded border border-2 text-center col-4 p-3"
+          className="boton_roles col-4"
           onClick={() => {
             actions.selectionRoles("encargado");
           }}
         >
-          <Icon_encargado width={30} />
+          <Icon_encargado className="iconRoles" />
           <h1 className="tituloRoles">Encargado</h1>
         </button>
       </div>

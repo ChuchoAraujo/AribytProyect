@@ -7,6 +7,10 @@
 	box-sizing: border-box;
 }
 
+button{
+	padding: 3px;
+	border-radius: 5px;
+}
 
 /*PAGES*/
 .pageLogo {
@@ -16,14 +20,21 @@
 	width: auto;
 }
 
+.pageLogin {
+	background-color: #4dada4;
+	width: auto;
+	width: auto;
+	height: 800px;
+}
+
+
 .footer {
 	background-color: #e2e2e2;
 	padding: 50px;
-	width: auto;
 }
 
-/*ICONO HOME*/
-.icono {
+/*ICONOS SVG*/
+.iconoAribyt {
 	fill: whitesmoke;
 	width: 800px;
 	height: auto;
@@ -149,44 +160,49 @@
 }
 
 
-/*BOTONES ROLES*/
-
-button{
-	padding: 3px;
-	border-radius: 5px;
-}
 
 
-.boton_roles {
-	background-color: white;
-	color: #bbbcbb;
-
-	
-}
-
-.boton_roles:hover {
-	background-color: #4dada4;
-}
 
 
-/*ICONS*/
-.efectoIcon {
-  opacity: 1;
-  transition-duration: 2s;
-  /* transition-timing-function: linear; */
-}
-
-.efectoIcon:hover {
-  opacity: 0;
-}
-
-/*TITULOS*/
-
-.tituloRoles {
-	font-size: 20px;
-}
 
 
 .containerFormClasificadora{
 	background-color: #4dada4;
+}
+
+
+/*Roles*/
+
+.containerRoles {
+	justify-content: center;
+}
+.iconRoles {
+	width: 60px;
+	align-items: center ;
+}
+
+.tituloRoles {
+	font-size: 30px;
+	padding: 20px;
+	color: black;
+}
+
+.boton_roles {
+	width: auto;
+	margin-right: 20px;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: black;
+}
+
+.boton_roles:hover {
+	opacity: .8;
+}
+
+.boton_roles {
+	background-color:white;
+	color: #bbbcbb;
+	border: #bbbcbb;
+
+	
 }

@@ -8,25 +8,6 @@ export const Vista_clasificadora = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-    useEffect(() => {
-      fetch(process.env.BACKEND_URL + "/api/private", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          if (!result.done) {
-            navigate("/");
-          }
-        })
-        .catch((error) => console.log("error", error));
-    }, []);
-
-
-
 
 
   return (

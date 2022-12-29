@@ -15,7 +15,7 @@ export const Navbar = () => {
 
 
 	return (
-    <nav className="containerNav container-fluid text-center row">
+    <nav className="containerNav text-center row">
       <div className="col-1">
         <Link to="/">
           <ImHome className="boton_home" />
