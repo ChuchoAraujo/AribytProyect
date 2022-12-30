@@ -32,63 +32,121 @@ def login():
     password = request.json.get('password', None)
     role = request.json.get('role', None)
 
-    user = User.query.filter_by(email=email,password=password, role=role).first()
+    user = User.query.filter_by(email=email).filter_by(password=password).filter_by(role=role).first()
   
     if user == None:
         return jsonify({'msg': 'User, password or role Not exist!'}), 401
     
-    access_token = create_access_token(identity=user.email)
+    if user:
+        access_token = create_access_token(identity=user.id)
+        return jsonify({'token': access_token}), 200 
 
-    response_body = {
-        'msg': 'Token create',
-        'token': access_token
-    }
 
-    return jsonify(response_body), 200 
+
+# @api.route('/acceso', methods=['POST'])
+# def login():
+#     email = request.json.get('email', None)
+#     password = request.json.get('password', None)
+#     role = request.json.get('role', None)
+
+#     user = User.query.filter_by(email=email,password=password, role=role).first()
+  
+#     if user == None:
+#         return jsonify({'msg': 'User, password or role Not exist!'}), 401
+    
+#     access_token = create_access_token(identity=user.email)
+
+#     response_body = {
+#         'msg': 'Token create',
+#         'token': access_token
+#     }
+
+#     return jsonify(response_body), 200 
+
+#---------------------------------------- POST / REGISTER ----------------------------------------#  
+@api.route('/register', methods=['POST'])
+def register():
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    role = request.json.get('role', None)
+
+    user_already_exist = User.query.filter_by(email=email).filter_by(password=password).first()
+
+    if user_already_exist:
+        return jsonify({'msg': 'Mismo email o contraseña'}), 401
+
+    else:
+        new_user = User(email=email, password=password, role=role)
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({'user': new_user.serialize()}), 200
 
 #---------------------------------------- GET / PRIVATE ----------------------------------------#
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
-def protected():
-    # Access the identity of the current user with get_jwt_identity
-    response_body= {
-        'msg': 'permission granted',
-        'done': True,
-        'user': get_jwt_identity()
-    }
-    return jsonify(response_body), 200
+def token_acces():
+   current_user_id = get_jwt_identity()
+   user = User.query.get(current_user_id)
+   
+   return jsonify(user.serialize()), 200
+
+
+
+# @api.route('/private', methods=['GET'])
+# @jwt_required()
+# def protected():
+#     # Access the identity of the current user with get_jwt_identity
+#     response_body= {
+#         'msg': 'permission granted',
+#         'done': True,
+#         'user': get_jwt_identity()
+#     }
+#     return jsonify(response_body), 200
 
 
 #-------------------------------------------------- ROLES --------------------------------------------------------------------------------------#
-
 
 @api.route('/clasificadora', methods=['POST'])
 @cross_origin()
 @jwt_required()
 def clasificadora():
-    
-    request_data = request.get_json(force=True)
-    
-    try:
-        registro = TablaClasificadora( 
-        # user_id = request_data[get_jwt_identity()],
-        cajas = request_data['cajas'], 
-        articulo = request_data['articulo'], 
-        lote = request_data['lote'],
-        jaulas = request_data['jaulas'],
-        pedido = request_data['pedido'],
-        personal = request_data['personal'],
-        problema = request_data['problema'],
-        accion = request_data['accion'],
-        tiempo = request_data['tiempo'],
-        velocidad = request_data['velocidad'],
-        gramos = request_data['gramos'],
-        fecha = request_data['fecha'],
-        horas = request_data['horas']
-        )
 
-        db.session.add(registro)
+    user_id = request.json.get('user_id', None)
+    cajas = request.json.get('cajas', None)
+    articulo = request.json.get('articulo', None)
+    lote = request.json.get('lote', None)
+    jaulas = request.json.get('jaulas', None)
+    pedido = request.json.get('pedido', None)
+    personal = request.json.get('personal', None)
+    problema = request.json.get('problema', None)
+    accion = request.json.get('accion', None)
+    tiempo = request.json.get('tiempo', None)
+    velocidad = request.json.get('velocidad', None)
+    gramos = request.json.get('gramos', None)
+    fecha = request.json.get('fecha', None)
+    horas = request.json.get('horas', None)
+
+    user_id = user_id = get_jwt_identity()
+
+    try:
+        register = TablaClasificadora(
+        user_id=user_id,
+        cajas=cajas, 
+        articulo=articulo,
+        lote=lote, 
+        jaulas=jaulas, 
+        pedido=pedido, 
+        personal=personal, 
+        problema=problema, 
+        accion=accion,
+        tiempo=tiempo, 
+        velocidad=velocidad, 
+        gramos=gramos, 
+        fecha=fecha, 
+        horas=horas,)
+
+        db.session.add(register)
         db.session.commit()
 
     except Exception as e:
@@ -100,11 +158,50 @@ def clasificadora():
         }
     return jsonify(response_body), 201
 
+
+
+# @api.route('/clasificadora', methods=['POST'])
+# @cross_origin()
+# @jwt_required()
+# def clasificadora():
+    
+#     request_data = request.get_json(force=True)
+    
+#     try:
+#         registro = TablaClasificadora( 
+#         # user_id = request_data[get_jwt_identity()],
+#         cajas = request_data['cajas'], 
+#         articulo = request_data['articulo'], 
+#         lote = request_data['lote'],
+#         jaulas = request_data['jaulas'],
+#         pedido = request_data['pedido'],
+#         personal = request_data['personal'],
+#         problema = request_data['problema'],
+#         accion = request_data['accion'],
+#         tiempo = request_data['tiempo'],
+#         velocidad = request_data['velocidad'],
+#         gramos = request_data['gramos'],
+#         fecha = request_data['fecha'],
+#         horas = request_data['horas']
+#         )
+
+#         db.session.add(registro)
+#         db.session.commit()
+
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 402
+
+#     response_body = {
+#         "msg": "User create",
+#         "user": get_jwt_identity()
+#         }
+#     return jsonify(response_body), 201
+
   
-    # return jsonify({
-    #     'msg': 'ok',
-    #     'registro': registro.serialize()
-    #     }), 201
+#     # return jsonify({
+#     #     'msg': 'ok',
+#     #     'registro': registro.serialize()
+#     #     }), 201
 
 
 
