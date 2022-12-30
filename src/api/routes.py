@@ -72,7 +72,7 @@ def clasificadora():
     
     try:
         registro = TablaClasificadora( 
-        user_id = request_data[get_jwt_identity()],
+        # user_id = request_data[get_jwt_identity()],
         cajas = request_data['cajas'], 
         articulo = request_data['articulo'], 
         lote = request_data['lote'],
