@@ -5,7 +5,7 @@ import Icon_simbolo from "../icons/icon_simbolo";
 
 export const Logo = () => {
   const { store, actions } = useContext(Context);
-  const [change, setChange] =useState("efectoIcon")
+  
 
 
 
@@ -13,8 +13,10 @@ export const Logo = () => {
     <div className="text-center">
       <div className="row">
         <div className="col-2"></div>
-        <div className="col-8">
-          <Icon_aribyt className="iconoAribyt" />
+        <div className="col-8 ">
+          <Icon_aribyt
+            className="iconoAribyt"
+          />
         </div>
         <div className="col-2"></div>
       </div>

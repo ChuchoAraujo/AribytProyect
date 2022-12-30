@@ -13,25 +13,18 @@ button{
 }
 
 /*PAGES*/
-.pageLogo {
-	background-color: #4dada4;
-	padding: 100px;
-	height: auto;
-	width: auto;
-}
-
 .pageLogin {
-	background-color: #4dada4;
+	background-color: white;
 	width: auto;
 	width: auto;
 	height: 800px;
 }
 
-
 .footer {
 	background-color: #e2e2e2;
 	padding: 50px;
 }
+
 
 /*ICONOS SVG*/
 .iconoAribyt {
@@ -78,9 +71,6 @@ button{
 	margin-right: 5px;
 	color: #4dada4;
 }
-
-
-
 
 
 /*FORMULARIO*/
@@ -160,12 +150,6 @@ button{
 }
 
 
-
-
-
-
-
-
 .containerFormClasificadora{
 	background-color: #4dada4;
 }
@@ -206,3 +190,34 @@ button{
 
 	
 }
+
+/*pruebas opacidad*/
+.opacity {
+   opacity: 1;
+   filter: alpha(opacity=50);
+   zoom: 1;
+   background-color: #4dada4;
+   padding: 100px;
+   height: auto;
+   width: auto;
+ }
+
+.opacityDone {
+   opacity: 0;
+   filter: alpha(opacity=50);
+   zoom: 1;
+   transition-duration: 3s;
+   background-color: white;
+   padding: 100px;
+   height: auto;
+   width: auto;
+}
+
+.red {
+	background-color: red;
+}
+
+.blue {
+	background-color: #0051ff;
+}
+
