@@ -130,7 +130,7 @@ def clasificadora():
     user_id = user_id = get_jwt_identity()
 
     try:
-        register = TablaClasificadora(
+        newRegister = TablaClasificadora(
         user_id=user_id,
         cajas=cajas, 
         articulo=articulo,
@@ -146,18 +146,17 @@ def clasificadora():
         fecha=fecha, 
         horas=horas,)
 
-        db.session.add(register)
+        db.session.add(newRegister)
         db.session.commit()
 
     except Exception as e:
         return jsonify({"error": str(e)}), 402
 
-    response_body = {
-        "msg": "User create",
-        "user": get_jwt_identity()
-        }
-    return jsonify(response_body), 201
 
+    return jsonify({
+        'user': newRegister.serialize(),
+        'identity': get_jwt_identity()
+    }), 201
 
 
 # @api.route('/clasificadora', methods=['POST'])
