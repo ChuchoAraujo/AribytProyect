@@ -194,8 +194,8 @@ button{
 /*pruebas opacidad*/
 .opacity {
    opacity: 1;
-   filter: alpha(opacity=50);
-   zoom: 1;
+   
+ 
    background-color: #4dada4;
    padding: 100px;
    height: auto;
@@ -204,9 +204,8 @@ button{
 
 .opacityDone {
    opacity: 0;
-   filter: alpha(opacity=50);
-   zoom: 1;
-   transition-duration: 3s;
+   transition-duration: 5s;
+   transition-delay: 1s;
    background-color: white;
    padding: 100px;
    height: auto;
@@ -221,3 +220,76 @@ button{
 	background-color: #0051ff;
 }
 
+
+/**/
+/*CLase que aplica los estilos al elemento a aparecer*/
+.show-element {
+  /*duracion de la animacion, puedes variar el tiempo, entre mas grande mas tarda el efecto*/
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  /*le indicas que animacion quieres aplicarle, animacion hecha por ti en un keyframe*/
+  animation-name: fadeIn;
+  background-color: rgb(225, 225, 255);
+}
+
+.hide-element {
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-name: fadeOut;
+}
+
+/*KeyFrames*/
+/*La animacion hecha por ti, puedes ponerle cualquier nombre, solo es para identificarlo*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/*Puedes hacer mas animaciones personalizadas con todo lo que pueda hacer css*/
+@keyframes otherAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes animationTranslateIn {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes animationTranslateOut {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-200px);
+  }
+}
