@@ -30,9 +30,11 @@ export const Login = () => {
         if (result.token) {
           localStorage.setItem("token", result.token);
           navigate(urlRole);
+          console.log("este es del if"+result.user)
         }
         console.log(result)
         console.log("Bienvenido! ... Token creado");
+
       })
       .catch((error) => console.log("error", error));
   };
