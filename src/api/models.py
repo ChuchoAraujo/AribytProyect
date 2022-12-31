@@ -60,6 +60,8 @@ class TablaClasificadora(db.Model):
             "tiempo": self.tiempo,
             "velocidad": self.velocidad,
             "gramos": self.gramos,
+            "horas":self.horas,
+            "fecha":self.fecha
         }
 
 

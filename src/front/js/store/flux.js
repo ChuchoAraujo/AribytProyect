@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       horas: ["1", "2", "3", "4", "5", "6", "7", "8"],
       hora: "",
+      userId:"",
       message: null,
       role: "",
       demo: [

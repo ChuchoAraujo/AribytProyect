@@ -62,6 +62,7 @@ export const Formulario_clasificadora = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
+        "user_id":store.userId,
         "cajas": cajas,
         "articulo": articulo,
         "lote": lote,

@@ -107,6 +107,13 @@ def token_acces():
 
 #-------------------------------------------------- ROLES --------------------------------------------------------------------------------------#
 
+@api.route('/clasificadora', methods=['GET'])
+def get_clasificadora():
+    call_clasificadora = TablaClasificadora.query.all()
+    result = [element.serialize() for element in call_clasificadora]
+    response_body = {'msg': 'Get clasificadora OK'}
+    return jsonify(result), 200
+
 @api.route('/clasificadora', methods=['POST'])
 @cross_origin()
 @jwt_required()
