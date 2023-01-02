@@ -191,8 +191,15 @@ button{
 	
 }
 
+
+.logo {
+	background-color: #4dada4;
+	padding: 100px;
+   height: auto;
+   width: auto;
+}
 /*pruebas opacidad*/
-.opacity {
+/* .opacity {
    opacity: 1;
    
  
@@ -200,9 +207,9 @@ button{
    padding: 100px;
    height: auto;
    width: auto;
- }
+ } */
 
-.opacityDone {
+/* .opacityDone {
    opacity: 0;
    transition-duration: 5s;
    transition-delay: 1s;
@@ -210,7 +217,7 @@ button{
    padding: 100px;
    height: auto;
    width: auto;
-}
+} */
 
 .red {
 	background-color: red;

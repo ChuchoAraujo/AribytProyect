@@ -175,3 +175,24 @@ def mecanico():
         'register': newRegister.serialize(),
         'identity': get_jwt_identity()
     }), 201
+
+
+#---------------------------------- TABLA ENCARGADO ---------------------------
+
+@api.route('/encargado', methods=['GET'])
+def get_encargado():
+    call_users = User.query.all()
+    result_user = [element.serialize() for element in call_users]
+    call_clasificadora = TablaClasificadora.query.all()
+
+    result_clasificadora = [element.serialize() for element in call_clasificadora]
+    call_get_mecanico = TablaMecanico.query.all()
+
+    result_Mecanico = [element.serialize() for element in call_get_mecanico]
+    response_body = {'msg': 'Gets OKS'}
+
+    return jsonify({
+        'user': result_user, 
+        'clasificadora': result_clasificadora, 
+        'mecanico': result_Mecanico 
+        }), 200
