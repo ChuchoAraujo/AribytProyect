@@ -19,7 +19,6 @@ export const Formulario_clasificadora = () => {
   const [tiempo, setTiempo] = useState("");
   const [velocidad, setVelocidad] = useState("");
   const [gramos, setGramos] = useState("");
-  //OBTENER FECHA Y HORA
 
   //OBTENER FECHA Y HORA
   let today = new Date();

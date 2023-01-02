@@ -66,8 +66,8 @@ class TablaClasificadora(db.Model):
 
 
 class TablaMecanico(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    id_tabla = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     problema = db.Column(db.String, unique=True, nullable=True)
     accion = db.Column(db.String, unique=True, nullable=True)
 
@@ -77,7 +77,7 @@ class TablaMecanico(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "id_tabla": self.id_tabla,
+            "user_id": self.user_id,
             "problema": self.problema,
             "accion": self.accion
         }
