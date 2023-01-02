@@ -151,12 +151,16 @@ def mecanico():
     user_id = request.json.get('user_id', None)
     problema = request.json.get('problema', None)
     accion = request.json.get('accion', None)
+    fecha = request.json.get('fecha', None)
+    horas = request.json.get('horas', None)
 
     user_id = user_id = get_jwt_identity()
 
     try:
         newRegister = TablaMecanico(
         user_id=user_id,
+        fecha=fecha, 
+        horas=horas,
         problema=problema, 
         accion=accion)
 

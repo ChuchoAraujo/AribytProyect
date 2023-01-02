@@ -68,6 +68,8 @@ class TablaClasificadora(db.Model):
 class TablaMecanico(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    horas = db.Column(db.String, unique=False, nullable=True)
+    fecha = db.Column(db.String, unique=False, nullable=True)
     problema = db.Column(db.String, unique=True, nullable=True)
     accion = db.Column(db.String, unique=True, nullable=True)
 
@@ -79,7 +81,9 @@ class TablaMecanico(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "problema": self.problema,
-            "accion": self.accion
+            "accion": self.accion,
+            "horas":self.horas,
+            "fecha":self.fecha
         }
 
 class TestTable(db.Model):
