@@ -69,7 +69,13 @@ def token_acces():
    current_user_id = get_jwt_identity()
    user = User.query.get(current_user_id)
    
-   return jsonify(user.serialize()), 200
+   if user == None:
+        return jsonify({'msg': 'User, password or role Not exist!'}), 401
+   
+   return jsonify({
+    'user': user.serialize(),
+    'current_user' : current_user_id
+   }), 200
 
 
 

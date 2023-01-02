@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
-import {store} from "../../store/flux";
+import { store } from "../../store/flux";
 import { Context } from "../../store/appContext";
+import { number } from "prop-types";
 
 export const Formulario_clasificadora = () => {
   const { store } = useContext(Context);
@@ -19,6 +20,7 @@ export const Formulario_clasificadora = () => {
   const [tiempo, setTiempo] = useState("");
   const [velocidad, setVelocidad] = useState("");
   const [gramos, setGramos] = useState("");
+  const [turno, setTurno] = useState("");
 
   //OBTENER FECHA Y HORA
   let today = new Date();
@@ -28,30 +30,70 @@ export const Formulario_clasificadora = () => {
   var todayHora = new Date();
   var nowHora = todayHora.toLocaleTimeString("en-US");
 
+
+  console.log(parseFloat(nowHora))
+  
+
   const back = () => {
     navigate(-1);
   };
 
   // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
 
-    useEffect(() => {
-      fetch(process.env.BACKEND_URL + "/api/private", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log("Muy bien !! ... Token encontrado", result);
-          // if (!result.done) {
-          //   navigate("/");
-          // }
-        })
-        .catch((error) => console.log("error", error));
-    }, []);
+  //GET TURNO//
+  const getTurno = () => {
+    if (nowHora >= "6:00:00 AM" && nowHora <= "2:00:00 PM") {
+      console.log("entra al primer if")
+      setTurno("Mañana");
+      return turno
+    }
+    if (nowHora >= "2:00:00 PM" && nowHora <= "10:00:00 PM") {
+      console.log("entra al segundo if");
+      setTurno("Tarde");
+      return turno;
+    }
+    if (nowHora >= "10:00:00 AM" && nowHora <= "6:00:00 AM") {
+      console.log("entra al tercer if");
+      setTurno("Noche");
+      return turno;
+    }
+  };
 
+  function getPrueba () {
+     if (nowHora >= "6:00:00 AM") {
+       console.log("entra al primer if " + nowHora);
+     }
+     else if (nowHora >= "2:00:00 PM") {
+      console.log("entra al segundo if");
+    }
+    else if (nowHora >= "10:00:00 PM") {
+      console.log("entra al tercer if");
+    }
+    else {
+      console.log("Ya no se que hacer Josgredh" + nowHora)
+    }
+  }
+
+  // GET AREA PRIVADA PARA TOKEN
+  useEffect(() => {
+    fetch(process.env.BACKEND_URL + "/api/private", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Muy bien !! ... Token encontrado", result);
+        getPrueba();
+        ;
+        // if (!result.done) {
+        //   navigate("/");
+        // }
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
   const sendDataClasificadora = () => {
     fetch(process.env.BACKEND_URL + "/api/clasificadora", {
@@ -61,20 +103,20 @@ export const Formulario_clasificadora = () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        "user_id":store.userId,
-        "cajas": cajas,
-        "articulo": articulo,
-        "lote": lote,
-        "jaulas": jaulas,
-        "pedido": pedido,
-        "personal": personal,
-        "problema": problema,
-        "accion": accion,
-        "tiempo": tiempo,
-        "velocidad": velocidad,
-        "gramos": gramos,
-        "fecha": `${month}/${day}/${year}`,
-        "horas": nowHora,
+        user_id: store.userId,
+        cajas: cajas,
+        articulo: articulo,
+        lote: lote,
+        jaulas: jaulas,
+        pedido: pedido,
+        personal: personal,
+        problema: problema,
+        accion: accion,
+        tiempo: tiempo,
+        velocidad: velocidad,
+        gramos: gramos,
+        fecha: `${month}/${day}/${year}`,
+        horas: nowHora,
       }),
     })
       .then((response) => response.json())

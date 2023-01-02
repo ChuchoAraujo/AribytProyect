@@ -25,9 +25,9 @@ export const Vista_encargado = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Muy bien !! ... Token encontrado", result);
-        // if (!result.done) {
-        //   navigate("/");
-        // }
+        if (!result.current_user) {
+          navigate("/");
+        }
       })
       .catch((error) => console.log("error", error));
   }, []);
