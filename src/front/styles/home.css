@@ -160,9 +160,20 @@ button{
 .containerRoles {
 	justify-content: center;
 }
+
+.roleMecanicoGreen {
+	background-color: #4dada4;
+}
+
+.roleMecanicoGray {
+	background-color: #e2e2e2;
+}
+
 .iconRoles {
 	width: 60px;
 	align-items: center ;
+	margin-top: 18
+	px;
 }
 
 .tituloRoles {

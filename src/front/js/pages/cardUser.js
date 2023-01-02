@@ -20,7 +20,7 @@ export const CardUser = ({user}) => {
           <tbody key={index}>
             <tr>
               <th scope="row">{item.id}</th>
-              <td>Username</td>
+              <td>{item.username}</td>
               <td>{item.email}</td>
               <td>{item.role}</td>
             </tr>

@@ -27,6 +27,7 @@ def get_users():
 
 @api.route('/acceso', methods=['POST'])
 def login():
+    username = request.json.get('username', None)
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     role = request.json.get('role', None)
@@ -44,17 +45,18 @@ def login():
 #---------------------------------------- REGISTER ----------------------------------------#  
 @api.route('/register', methods=['POST'])
 def register():
+    username = request.json.get('username', None)
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     role = request.json.get('role', None)
 
-    user_already_exist = User.query.filter_by(email=email).filter_by(password=password).first()
+    user_already_exist = User.query.filter_by(username=username).filter_by(email=email).filter_by(password=password).first()
 
     if user_already_exist:
         return jsonify({'msg': 'Mismo email o contraseña'}), 401
 
     else:
-        new_user = User(email=email, password=password, role=role)
+        new_user = User(username=username, email=email, password=password, role=role)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'user': new_user.serialize()}), 200

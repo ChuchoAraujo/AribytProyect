@@ -13,12 +13,12 @@ export const Home = () => {
   const loadLogo = useEffect(() => {
     setLogo("opacity")}, [])
 
-    const loadLogin = useEffect(() => {
-      const timer = setTimeout(() => {
-        console.log("This will run after 1 second!");
-      }, 1000);
-      return () => clearTimeout(timer);
-    }, []);
+    // const loadLogin = useEffect(() => {
+    //   const timer = setTimeout(() => {
+    //     console.log("This will run after 1 second!");
+    //   }, 1000);
+    //   return () => clearTimeout(timer);
+    // }, []);
   
 
 
