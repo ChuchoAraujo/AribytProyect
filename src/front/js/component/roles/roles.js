@@ -16,7 +16,27 @@ export const Roles = () => {
 
       <div className="row containerRoles onLogo">
         <div
-          className="boton_roles col-4"
+          className="botonRoles col-4"
+          onClick={() => {
+            actions.selectionRoles("clasificadora");
+          }}
+        >
+          <div
+            className={
+              role === "roleClasificadoraGray"
+                ? "roleClasificadoraGreen"
+                : "roleClasificadoraGray"
+            }
+            onClick={() => setRole("roleClasificadoraGray")}
+          >
+            {" "}
+            <Icon_clasificadora className="iconRoles" />
+            <h1 className="tituloRoles">Clasificadora</h1>
+          </div>
+        </div>
+
+        <div
+          className="botonRoles col-4"
           onClick={() => {
             actions.selectionRoles("mecanico");
           }}
@@ -30,30 +50,30 @@ export const Roles = () => {
             onClick={() => setRole("roleMecanicoGray")}
           >
             {" "}
-            <Icon_mecanico className="iconRoles iconMecanico" />
+            <Icon_mecanico className="iconRoles" />
             <h1 className="tituloRoles">Mecanico</h1>
           </div>
         </div>
 
-        <button
-          className="boton_roles col-4"
-          onClick={() => {
-            actions.selectionRoles("clasificadora");
-          }}
-        >
-          <Icon_clasificadora className="iconRoles" />
-          <h1 className="tituloRoles">Clasificadora</h1>
-        </button>
-
-        <button
-          className="boton_roles col-4"
+        <div
+          className="botonRoles col-4"
           onClick={() => {
             actions.selectionRoles("encargado");
           }}
         >
-          <Icon_encargado className="iconRoles" />
-          <h1 className="tituloRoles">Encargado</h1>
-        </button>
+          <div
+            className={
+              role === "roleEncargadoGray"
+                ? "roleEncargadoGreen"
+                : "roleEncargadoGray"
+            }
+            onClick={() => setRole("roleEncargadoGray")}
+          >
+            {" "}
+            <Icon_encargado className="iconRoles" />
+            <h1 className="tituloRoles">Encargado</h1>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ button{
 	border-radius: 5px;
 }
 
-/*PAGES*/
+/*--------------------------------------------HOME--------------------------------------------------------*/
 .pageLogin {
 	background-color: white;
 	width: auto;
@@ -35,7 +35,7 @@ button{
 }
 
 
-/*NAVEGADOR*/
+/*------------------------------------------NAVEGADOR--------------------------------------------------------*/
 .containerNav {
 	background-color: #e2e2e2;
 	padding: 20px;
@@ -73,7 +73,7 @@ button{
 }
 
 
-/*FORMULARIO*/
+/*-----------------------------------FORMULARIO-----------------------------------------*/
 
 .formulario {
 	min-width: 600px;
@@ -155,25 +155,17 @@ button{
 }
 
 
-/*Roles*/
+/*---------------------------------------Roles--------------------------------------*/
 
 .containerRoles {
 	justify-content: center;
 }
 
-.roleMecanicoGreen {
-	background-color: #4dada4;
-}
-
-.roleMecanicoGray {
-	background-color: #e2e2e2;
-}
-
 .iconRoles {
 	width: 60px;
 	align-items: center ;
-	margin-top: 18
-	px;
+	margin-top: 25px;
+	fill: black;
 }
 
 .tituloRoles {
@@ -182,24 +174,42 @@ button{
 	color: black;
 }
 
-.boton_roles {
-	width: auto;
-	margin-right: 20px;
-	padding: 10px;
-	border-radius: 20px;
-	background-color: black;
-}
-
-.boton_roles:hover {
-	opacity: .8;
-}
-
-.boton_roles {
-	background-color:white;
+.botonRoles {
+	background-color: white;
 	color: #bbbcbb;
-	border: #bbbcbb;
-
+	border-radius: 50px;
+	cursor: pointer;
 	
+}
+
+/*------------------------Use state cambio de color----------------------*/
+
+.roleMecanicoGreen {
+	background-color: #4dada4;
+	border-radius: 30px;
+	transition-duration: 1s;
+}
+.roleMecanicoGray{
+	background-color: #e2e2e2;
+	border-radius: 30px;
+}
+.roleClasificadoraGreen {
+	background-color: #4dada4;
+	border-radius: 30px;
+	transition-duration: 1s;
+}
+.roleClasificadoraGray{
+	background-color: #e2e2e2;
+	border-radius: 30px;
+}
+.roleEncargadoGreen {
+	background-color: #4dada4;
+	border-radius: 30px;
+	transition-duration: 1s;
+}
+.roleEncargadoGray{
+	background-color: #e2e2e2;
+	border-radius: 30px;
 }
 
 
@@ -229,14 +239,6 @@ button{
    height: auto;
    width: auto;
 } */
-
-.red {
-	background-color: red;
-}
-
-.blue {
-	background-color: #0051ff;
-}
 
 
 /**/
