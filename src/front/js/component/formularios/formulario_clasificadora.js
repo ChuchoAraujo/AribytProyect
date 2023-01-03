@@ -28,53 +28,41 @@ export const Formulario_clasificadora = () => {
   let month = today.getMonth() + 1;
   let year = today.getFullYear();
   var todayHora = new Date();
-  var nowHora = todayHora.toLocaleTimeString("en-US");
+  var nowHora = parseFloat(todayHora.toLocaleTimeString("en-US"));
 
 
-  console.log(parseFloat(nowHora))
-  
+
+
+  const horaActual = new Intl.DateTimeFormat(undefined, {
+    timeStyle: "short",
+  }).format(new Date());
+  console.log("Esta es la hora actual con formato 24hrs: ", horaActual);
+
+  const horaConvertida = parseFloat(horaActual);
+  console.log("Esta es la hora convertida: ", horaConvertida);
+
+  // ---------------------------- FUNCION OBTENER HORA-TURNOS----------------------------------//
+
+  function getPrueba() {
+    if (horaConvertida >= 6 && horaConvertida <= 14) {
+      console.log("Eres turno de mañana, tu hora es: " + horaConvertida);
+    } else if (horaConvertida >= 14 && horaConvertida <= 22) {
+      console.log("Eres turno de tarde, tu hora es: " + horaConvertida);
+    } else if (horaConvertida >= 22 && horaConvertida <= 6) {
+      console.log("Eres turno de noche, tu hora es: " + horaConvertida);
+    } else {
+      console.log("No tienes turno");
+    }
+  }
+
+  getPrueba(horaConvertida);
+
+  // ---------------------------- FUNCION REGRESAR DE PAGINA----------------------------------//
 
   const back = () => {
     navigate(-1);
   };
-
-  // ---------------------------- LLAMADA DEL POST / CLASIFICADORA----------------------------------------------------
-
-  //GET TURNO//
-  const getTurno = () => {
-    if (nowHora >= "6:00:00 AM" && nowHora <= "2:00:00 PM") {
-      console.log("entra al primer if")
-      setTurno("Mañana");
-      return turno
-    }
-    if (nowHora >= "2:00:00 PM" && nowHora <= "10:00:00 PM") {
-      console.log("entra al segundo if");
-      setTurno("Tarde");
-      return turno;
-    }
-    if (nowHora >= "10:00:00 AM" && nowHora <= "6:00:00 AM") {
-      console.log("entra al tercer if");
-      setTurno("Noche");
-      return turno;
-    }
-  };
-
-  function getPrueba () {
-     if (nowHora >= "6:00:00 AM") {
-       console.log("entra al primer if " + nowHora);
-     }
-     else if (nowHora >= "2:00:00 PM") {
-      console.log("entra al segundo if");
-    }
-    else if (nowHora >= "10:00:00 PM") {
-      console.log("entra al tercer if");
-    }
-    else {
-      console.log("Ya no se que hacer Josgredh" + nowHora)
-    }
-  }
-
-  // GET AREA PRIVADA PARA TOKEN
+  // ---------------------------- GET / AREA PRIVADA----------------------------------//
   useEffect(() => {
     fetch(process.env.BACKEND_URL + "/api/private", {
       method: "GET",
@@ -86,8 +74,6 @@ export const Formulario_clasificadora = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Muy bien !! ... Token encontrado", result);
-        getPrueba();
-        ;
         // if (!result.done) {
         //   navigate("/");
         // }
@@ -95,6 +81,7 @@ export const Formulario_clasificadora = () => {
       .catch((error) => console.log("error", error));
   }, []);
 
+  // ---------------------------- POST / CLASIFICADORA----------------------------------//
   const sendDataClasificadora = () => {
     fetch(process.env.BACKEND_URL + "/api/clasificadora", {
       method: "POST",
