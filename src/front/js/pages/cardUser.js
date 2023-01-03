@@ -21,10 +21,22 @@ export const CardUser = ({user}) => {
   }
   else {
     results = user.filter((dato) =>
-      dato.role.toLowerCase().includes(serch.toLocaleLowerCase())
+      dato.role.toLowerCase().includes(serch.toLocaleLowerCase()
+      )
     );
-    
   }
+
+  if (!serch) {
+    results = user;
+  } else {
+    results = user.filter((dato) =>
+      dato.username.toLowerCase().includes(serch.toLocaleLowerCase())
+    );
+  }
+  
+
+
+  
 
 
 
