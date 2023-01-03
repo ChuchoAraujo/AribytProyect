@@ -31,6 +31,7 @@ def login():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     role = request.json.get('role', None)
+    turno = request.json.get('turno', None)
 
     user = User.query.filter_by(email=email).filter_by(password=password).filter_by(role=role).first()
   
@@ -49,6 +50,7 @@ def register():
     email = request.json.get('email', None)
     password = request.json.get('password', None)
     role = request.json.get('role', None)
+    turno = request.json.get('turno', None)
 
     user_already_exist = User.query.filter_by(username=username).filter_by(email=email).filter_by(password=password).first()
 
