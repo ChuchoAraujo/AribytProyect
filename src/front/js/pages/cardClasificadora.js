@@ -15,7 +15,7 @@ export const CardClasificadora = ({ clasificadora }) => {
               <th scope="col">Hora</th>
               <th scope="col">Fecha</th>
               <th scope="col">Cajas</th>
-              <th scope="col">Articulo</th>
+              <th scope="col">Estela</th>
               <th scope="col">Gramos</th>
               <th scope="col">Jaulas</th>
               <th scope="col">Lote</th>
