@@ -58,7 +58,6 @@ export const Vista_encargado = () => {
   return (
     <>
       <div>
-        <h1 className="text-center p-3">Encargado</h1>
         <Formulario_encargado/>
         <CardUser user={user} />
         <CardClasificadora clasificadora={clasificadora} />
