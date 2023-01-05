@@ -1,11 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon_encargado from "../component/icons/icon_encargado";
 import Icon_clasificadora from "../component/icons/icon_clasificadora";
 import Icon_mecanico from "../component/icons/icon_mecanico";
 import Icon_simbolo from "../component/icons/icon_simbolo";
+import { Context } from "../store/appContext";
 
-export const CardUser = ({ user }) => {
+export const CardUser = () => {
+   const { store, actions } = useContext(Context);
+     useEffect(() => {
+       actions.fetchUser();
+       console.log("estoy llamando al fetch");
+     }, []);
+
   // --------------------- Use state para el input----------------------//
   const [serch, setSerch] = useState("");
   // --------------------- Setear el input ----------------------//
@@ -36,7 +43,7 @@ export const CardUser = ({ user }) => {
 
     //------ CHECKBOX TURNO
     if (e.target.checked) {
-      const resultTurno = user.filter((item) => item.turno === e.target.value);
+      const resultTurno = store.user.filter((item) => item.turno === e.target.value);
 
       setDataFilter([...dataFilter, ...resultTurno]);
     } else {
@@ -57,7 +64,7 @@ export const CardUser = ({ user }) => {
 
     //------ CHECKBOX ROLE
     if (e.target.checked) {
-      const resultRole = user.filter((item) => item.role === e.target.value);
+      const resultRole = store.user.filter((item) => item.role === e.target.value);
 
       setDataFilter([...dataFilter, ...resultRole]);
     } else {

@@ -15,10 +15,11 @@ import { Container_mecanico } from "./pages/mecanico/container_mecanico";
 import { Vista_mecanico } from "./pages/mecanico/vista_mecanico";
 import { Vista_encargado } from "./pages/encargado/vista_encargado";
 import { Page_logo } from "./pages/page_logo/page_logo";
-import { Page_roles } from "./pages/page_roles/page_Roles";
-import { Page_login, Vista_login } from "./pages/page_login/vista_login";
+import { Vista_login } from "./pages/page_login/vista_login";
 import { Usuarios } from "./pages/usuarios";
+import { Clasificadora } from "./pages/clasificadora";
 import { Mecanico } from "./pages/mecanico";
+
 
 //create your first component
 const Layout = () => {
@@ -63,6 +64,11 @@ const Layout = () => {
             <Route
               element={<Mecanico />}
               path="/vista_login/vista_encargado/mecanico"
+            />
+
+            <Route
+              element={<Clasificadora />}
+              path="/vista_login/vista_encargado/clasificadora"
             />
 
             <Route element={<Demo />} path="/demo" />

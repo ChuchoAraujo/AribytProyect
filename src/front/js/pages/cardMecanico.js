@@ -1,6 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 
-export const CardMecanico = ({ mecanico }) => {
+
+export const CardMecanico = () => {
+     const { store, actions } = useContext(Context);
+       useEffect(() => {
+         actions.fetchUser();
+         console.log("estoy llamando al fetch");
+       }, []);
 
   return (
     <div className="container text-center p-5">
@@ -16,7 +23,7 @@ export const CardMecanico = ({ mecanico }) => {
             <th scope="col">Acción</th>
           </tr>
         </thead>
-        {mecanico.map((item, index) => (
+        {store.mecanico.map((item, index) => (
           <tbody key={index}>
             <tr>
               <th scope="row">{item.id}</th>

@@ -1,8 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "../store/appContext";
 
+export const CardClasificadora = () => {
+  const { store, actions } = useContext(Context);
+ 
 
-export const CardClasificadora = ({ clasificadora }) => {
-
+    useEffect(() => {
+      actions.fetchUser();
+      console.log("estoy llamando al fetch");
+    }, []);
 
   return (
       <div className="container text-center p-5">
@@ -27,7 +33,7 @@ export const CardClasificadora = ({ clasificadora }) => {
               <th scope="col">Velocidad</th>
             </tr>
           </thead>
-          {clasificadora.map((item, index) => (
+          {store.clasificadora.map((item, index) => (
             <tbody key={index}>
               <tr>
                 <th scope="row">{item.id}</th>

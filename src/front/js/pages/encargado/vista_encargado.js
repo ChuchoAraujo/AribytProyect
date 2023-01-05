@@ -33,35 +33,13 @@ export const Vista_encargado = () => {
       .catch((error) => console.log("error", error));
   }, []);
 
-    useEffect(() => {
-       fetch(process.env.BACKEND_URL + "/api/encargado", {
-         method: "GET",
-         headers: {
-           "Content-Type": "application/json",
-           Authorization: "Bearer " + localStorage.getItem("token"),
-         },
-       })
-         .then((response) => response.json())
-         .then((result) => {
-          setUser(result.user)
-          setClasificadora(result.clasificadora)
-          setMecanico(result.mecanico)
-           console.log(result.user)
-           console.log(result.clasificadora)
-           console.log(result.mecanico);
-         })
-         .catch((error) => console.log("error", error));
-    }, []);
-
-
 
   return (
     <>
       <div>
-        <Formulario_encargado/>
-        <CardUser user={user} />
-        <CardClasificadora clasificadora={clasificadora} />
-        <CardMecanico mecanico={mecanico} />
+        <CardUser/>
+        <CardClasificadora />
+        <CardMecanico />
       </div>
     </>
   );
