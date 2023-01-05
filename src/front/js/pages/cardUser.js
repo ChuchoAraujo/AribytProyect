@@ -1,5 +1,9 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import Icon_encargado from "../component/icons/icon_encargado";
+import Icon_clasificadora from "../component/icons/icon_clasificadora";
+import Icon_mecanico from "../component/icons/icon_mecanico";
+import Icon_simbolo from "../component/icons/icon_simbolo";
 
 export const CardUser = ({ user }) => {
   // --------------------- Use state para el input----------------------//
@@ -9,17 +13,6 @@ export const CardUser = ({ user }) => {
     setSerch(e.target.value);
     // console.log(e.target.value)
   };
-  // --------------------- Metodo de filtrado-Buscador----------------------//
-
-  let results = [];
-
-  // if (!serch) {
-  //   results = [];
-  // } else {
-  //   results = user.filter((dato) =>
-  //     dato.email.toLowerCase().includes(serch.toLocaleLowerCase())
-  //   );
-  // }
 
   // --------------------- FILTRADO CHECKBOX ----------------------//
   const [dataFilter, setDataFilter] = useState([]);
@@ -40,7 +33,7 @@ export const CardUser = ({ user }) => {
       ...selectTurno,
       [e.target.value]: e.target.checked,
     });
-    
+
     //------ CHECKBOX TURNO
     if (e.target.checked) {
       const resultTurno = user.filter((item) => item.turno === e.target.value);
@@ -56,34 +49,30 @@ export const CardUser = ({ user }) => {
   };
   console.log(dataFilter);
 
+  const handleCheckboxRole = (e) => {
+    setSelectRole({
+      ...selectRole,
+      [e.target.value]: e.target.checked,
+    });
 
-   const handleCheckboxRole = (e) => {
-     setSelectRole({
-       ...selectRole,
-       [e.target.value]: e.target.checked,
-     });
+    //------ CHECKBOX ROLE
+    if (e.target.checked) {
+      const resultRole = user.filter((item) => item.role === e.target.value);
 
-     //------ CHECKBOX ROLE
-     if (e.target.checked) {
-       const resultRole = user.filter((item) => item.role === e.target.value);
+      setDataFilter([...dataFilter, ...resultRole]);
+    } else {
+      const resultRole = dataFilter.filter(
+        (item) => item.role !== e.target.value
+      );
 
-       setDataFilter([...dataFilter, ...resultRole]);
-     } else {
-       const resultRole = dataFilter.filter(
-         (item) => item.role !== e.target.value
-       );
-
-       setDataFilter([...resultRole]);
-     }
-   };
-   console.log(dataFilter);
-
-
-
-
+      setDataFilter([...resultRole]);
+    }
+  };
+  console.log(dataFilter);
 
   return (
     <div className="container-fluid row text-center">
+      {/*------------------------- HEADER ------------------------------*/}
       <header>
         <h1 className="text-center p-5">
           {" "}
@@ -91,27 +80,32 @@ export const CardUser = ({ user }) => {
           {"   "}Encargado
         </h1>
       </header>
-      <div className="col-1"></div>
-      <div className="col-3">
-        {/*------------------------- HEADER ------------------------------*/}
-        <titulo>
-          <h2 className="p-2">Selecciona el filtro</h2>
-        </titulo>
-
-        {/*------------------------- BUSCADOR------------------------------*/}
+      <div className="col-3"></div> {/*------ COLUMNA VACIA -----*/}
+      {/*------------------------- CONTAINER ROLE ------------------------------*/}
+      <main className="col-6">
         <div>
-          <input
-            type="text"
-            placeholder="Serch"
-            className="me-3 p-2 m-3 form-control"
-            value={serch}
-            onChange={searcher}
-          />
-        </div>
+          <h4>¿Qué área te gustaría ver?</h4>
+          <Link to={"/vista_login/vista_encargado/clasificadora"}>
+            <button className="botonAreas">
+              <Icon_clasificadora className="iconsAreas" /> Clasificadora
+            </button>
+          </Link>
 
-        {/*------------------------- FILTROS CHECKBOX TURNO ------------------------------*/}
-        <div className="p-2">
-          <h3>Turno</h3>
+          <Link to={"/vista_login/vista_encargado/mecanico"}>
+            <button className="botonAreas">
+              <Icon_mecanico className="iconsAreas" /> Mecanico
+            </button>
+          </Link>
+
+          <Link to={"/vista_login/vista_encargado/usuarios"}>
+            <button className="botonAreas">
+              <Icon_simbolo className="iconsAreas" /> Usuarios
+            </button>
+          </Link>
+        </div>
+        {/*------------------------- CONTAINER TURNO ------------------------------*/}
+        <div className="containerTurno">
+          <h4 className="p-2">------ Turno ------</h4>
           <div>
             <input
               onChange={handleCheckboxTurno}
@@ -120,9 +114,11 @@ export const CardUser = ({ user }) => {
               placeholder="Serch"
               value="mañana"
               id="mañana"
-              className="me-3 p-2 m-3"
+              className="btn-check me-3 p-2 m-3"
             />
-            <label htmlFor="mañana">mañana</label>
+            <label className="btn btn-outline-success me-2" htmlFor="mañana">
+              mañana
+            </label>
 
             <input
               onChange={handleCheckboxTurno}
@@ -131,9 +127,11 @@ export const CardUser = ({ user }) => {
               placeholder="Serch"
               value="tarde"
               id="tarde"
-              className="me-3 p-2 m-3"
+              className="btn-check me-3 p-2 m-3"
             />
-            <label htmlFor="tarde">tarde</label>
+            <label className="btn btn-outline-success me-2" htmlFor="tarde">
+              tarde
+            </label>
 
             <input
               onChange={handleCheckboxTurno}
@@ -142,54 +140,273 @@ export const CardUser = ({ user }) => {
               placeholder="Serch"
               value="noche"
               id="noche"
-              className="me-3 p-2 m-3"
+              className="btn-check me-3 p-2 m-3"
             />
-            <label htmlFor="noche">Noche</label>
+            <label className="btn btn-outline-success me-2" htmlFor="noche">
+              Noche
+            </label>
           </div>
-        </div>
 
-        {/*------------------------- FILTROS CHECKBOX TURNO ------------------------------*/}
-        <div>
-          <h3>Role</h3>
+          {/*------------------------- FECHA------------------------------*/}
+          <div className="text-center">
+            <h4 className="mt-2 p-2">------ Fecha ------</h4>
+            <input
+              type="text"
+              placeholder="00/00/00"
+              className="p-2 text-center"
+              value={serch}
+              onChange={searcher}
+            />
+          </div>
+
+          {/*------------------------- CONTAINER FILTROS AVANZADOS ------------------------------*/}
           <div>
-            <input
-              onChange={handleCheckboxRole}
-              type="checkbox"
-              name="Role"
-              placeholder="Serch"
-              value="clasificadora"
-              id="clasificadora"
-              className="me-3 p-2 m-3"
-            />
-            <label htmlFor="mañana">Clasificadora</label>
+            <div>
+              <h4 className="mt-2 p-2">Búsqueda avanzada</h4>
+              <div>
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="clasificadora"
+                  id="clasificadora"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="clasificadora"
+                >
+                  Clasificadora
+                </label>
 
-            <input
-              onChange={handleCheckboxRole}
-              type="checkbox"
-              name="Role"
-              placeholder="Serch"
-              value="mecanico"
-              id="mecanico"
-              className="me-3 p-2 m-3"
-            />
-            <label htmlFor="tarde">Mecánico</label>
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Mecánico
+                </label>
 
-            <input
-              onChange={handleCheckboxRole}
-              type="checkbox"
-              name="Role"
-              placeholder="Serch"
-              value="encargado"
-              id="encargado"
-              className="me-3 p-2 m-3"
-            />
-            <label htmlFor="noche">Encargado</label>
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="encargado"
+                  id="encargado"
+                  className="btn-check p-2 m-3"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="encargado"
+                >
+                  Encargado
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Cajas
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Articulo
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Lote
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Jaulas
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Acción
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Velocidad
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Pedido
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Pax
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Problema
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Tiempo
+                </label>
+
+                <input
+                  onChange={handleCheckboxRole}
+                  type="checkbox"
+                  name="Role"
+                  placeholder="Serch"
+                  value="mecanico"
+                  id="mecanico"
+                  className="btn-check p-2"
+                />
+                <label
+                  className="btn btn-outline-success m-2"
+                  htmlFor="mecanico"
+                >
+                  Gramos
+                </label>
+                {/*------------------------- BUSCADOR------------------------------*/}
+                <input
+                  type="text"
+                  placeholder="Serch"
+                  className="mt-2 form-control"
+                  value={serch}
+                  onChange={searcher}
+                />
+              </div>
+            </div>
+
+            {/*------------------------- BUTTON------------------------------*/}
+            <button className="btn btn-success p-2 m-3">Vista general</button>
           </div>
         </div>
-      </div>
-
+      </main>
+      {/*------ COLUMNA VACIA -----*/}
+      <div className="col-3"></div>{" "}
       {/*------------------------- contenedor USER- MAP ------------------------------*/}
-      <div className="col-7">
+      <div>
         <main>
           <h1 className="p-2">Usuarios</h1>
           <table className="table">
@@ -206,7 +423,9 @@ export const CardUser = ({ user }) => {
               .filter(
                 (el) =>
                   el.email.toLowerCase().includes(serch.toLocaleLowerCase()) ||
-                  el.username.toLowerCase().includes(serch.toLocaleLowerCase()) ||
+                  el.username
+                    .toLowerCase()
+                    .includes(serch.toLocaleLowerCase()) ||
                   el.role.toLowerCase().includes(serch.toLocaleLowerCase()) ||
                   el.turno.toLowerCase().includes(serch.toLocaleLowerCase())
               )
@@ -224,7 +443,6 @@ export const CardUser = ({ user }) => {
           </table>
         </main>
       </div>
-      <div className="col-1"></div>
     </div>
   );
 };

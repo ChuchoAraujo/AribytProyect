@@ -313,3 +313,32 @@ button{
     transform: translateX(-200px);
   }
 }
+
+/*SELECCION DE AREAS ENCARGADO*/
+
+.botonAreas {
+	background-color: #4dada4;
+	margin: 10px;
+	padding: 12px;
+	color: white;
+	border-style: none;
+	border-radius: 10px;
+	width: auto;
+}
+
+.iconsAreas {
+	fill: white;
+	width: 20px;
+}
+
+
+/*VER, ADD, ELIMINAR Y EDITAR USUARIOS*/
+
+.butonUsuarios {
+	background-color: #4dada4;
+	margin: 10px;
+	padding: 10px;
+	color: white;
+	border-style: none;
+	border-radius: 10px;
+}

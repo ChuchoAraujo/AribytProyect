@@ -6,6 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       userId:"",
       message: null,
       role: "",
+      user: [],
+      clasificadora: [],
+      mecanico: [],
       demo: [
         {
           title: "FIRST",
@@ -35,6 +38,23 @@ const getState = ({ getStore, getActions, setStore }) => {
         // const store = getStore()
         setStore({ hora: hora });
         console.log("Se ha seleccionado la hora:" + hora);
+      },
+
+      fetchUser: () => {
+         fetch(process.env.BACKEND_URL + "/api/encargado", {
+           method: "GET",
+           headers: {
+             "Content-Type": "application/json",
+             Authorization: "Bearer " + localStorage.getItem("token"),
+           },
+         })
+           .then((response) => response.json())
+           .then((result) => {
+             setStore({ user: result.user });
+              setStore({ clasificadora: result.clasificadora });
+               setStore({ mecanico: result.mecanico });
+           })
+           .catch((error) => console.log("error", error));
       },
 
       getMessage: async () => {
