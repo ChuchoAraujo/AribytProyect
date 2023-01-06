@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       user: [],
       clasificadora: [],
       mecanico: [],
+      resultJoin:[],
       demo: [
         {
           title: "FIRST",
@@ -56,6 +57,20 @@ const getState = ({ getStore, getActions, setStore }) => {
            })
            .catch((error) => console.log("error", error));
       },
+      fetchJoin: () => {
+        fetch(process.env.BACKEND_URL + "/api/join", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            setStore({ resultJoin: result });
+          })
+          .catch((error) => console.log("error", error));
+     },
 
       getMessage: async () => {
         try {

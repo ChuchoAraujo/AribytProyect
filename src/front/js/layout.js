@@ -19,6 +19,7 @@ import { Vista_login } from "./pages/page_login/vista_login";
 import { Usuarios } from "./pages/usuarios";
 import { Clasificadora } from "./pages/clasificadora";
 import { Mecanico } from "./pages/mecanico";
+import { Encargado } from "./pages/vistas/encargado";
 
 
 //create your first component
@@ -69,6 +70,10 @@ const Layout = () => {
             <Route
               element={<Clasificadora />}
               path="/vista_login/vista_encargado/clasificadora"
+            />
+            <Route
+              element={<Encargado />}
+              path="/encargado"
             />
 
             <Route element={<Demo />} path="/demo" />

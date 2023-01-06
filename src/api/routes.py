@@ -1,7 +1,7 @@
 '''
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 '''
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint,Response,json
 from api.models import db, User, TablaClasificadora, TablaMecanico
 from api.utils import generate_sitemap, APIException
 import json
@@ -206,3 +206,46 @@ def get_encargado():
         'clasificadora': result_clasificadora, 
         'mecanico': result_Mecanico 
         }), 200
+
+
+def filtro_usuario(valor):
+    email=""
+    sentencia = db.session.query(User).filter(User.id==valor).all()
+    for result in sentencia:
+        email=result.email
+    return email
+
+
+@api.route('/join', methods=['GET'])
+def get_join():
+    array=[]
+    resultado = db.session.query(User,TablaClasificadora,TablaMecanico). \
+        select_from(User).join(TablaClasificadora and TablaMecanico).all()
+
+    for usuario,clasificadora,mecanico in resultado:
+        array.append({
+            'usuarioClasificadora': filtro_usuario(clasificadora.user_id),
+            'idclasificadora':clasificadora.user_id,
+            'problemaClasificadora':clasificadora.problema,
+            'horaClasificadora':clasificadora.horas,
+            'cajas':clasificadora.cajas,
+            'fecha':clasificadora.fecha,
+            'articulo':clasificadora.articulo,
+            'lote': clasificadora.lote,
+            'jaulas': clasificadora.jaulas,
+            'pedido': clasificadora.pedido,
+            'personal': clasificadora.personal,
+            'accionClasificadora': clasificadora.accion,
+            'tiempo': clasificadora.tiempo,
+            'velocidad': clasificadora.velocidad,
+            'gramos':clasificadora.gramos,
+
+            'usuarioMecanico': filtro_usuario(mecanico.user_id),
+            'userMecanico':usuario.username,
+            'problemaMecanico':mecanico.problema,
+            'accionMecanico':mecanico.accion,
+            'horaDelMecanico':mecanico.horas
+            })
+
+    return Response(json.dumps(array), mimetype='application/json')
+
