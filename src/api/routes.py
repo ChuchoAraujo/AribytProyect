@@ -110,6 +110,7 @@ def clasificadora():
     gramos = request.json.get('gramos', None)
     fecha = request.json.get('fecha', None)
     horas = request.json.get('horas', None)
+    turno = request.json.get('turno',None)
 
     user_id = user_id = get_jwt_identity()
 
@@ -128,7 +129,8 @@ def clasificadora():
         velocidad=velocidad, 
         gramos=gramos, 
         fecha=fecha, 
-        horas=horas,)
+        horas=horas,
+        turno=turno)
 
         db.session.add(newRegister)
         db.session.commit()
@@ -163,6 +165,7 @@ def mecanico():
     accion = request.json.get('accion', None)
     fecha = request.json.get('fecha', None)
     horas = request.json.get('horas', None)
+    turno = request.json.get('turno',None)
 
     user_id = user_id = get_jwt_identity()
 
@@ -172,7 +175,8 @@ def mecanico():
         fecha=fecha, 
         horas=horas,
         problema=problema, 
-        accion=accion)
+        accion=accion,
+        turno=turno)
 
         db.session.add(newRegister)
         db.session.commit()

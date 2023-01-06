@@ -13,7 +13,6 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     role = db.Column(db.String, unique=False, nullable=True)
-    turno = db.Column(db.String, unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=True)
 
     def __repr__(self):
@@ -25,7 +24,6 @@ class User(db.Model):
             "username": self.username,
             "email": self.email,
             "role": self.role,
-            "turno": self.turno
             # do not serialize the password, its a security breach
         }
 
@@ -45,6 +43,7 @@ class TablaClasificadora(db.Model):
     tiempo = db.Column(db.Float, unique=False, nullable=False)
     velocidad = db.Column(db.Float, unique=False, nullable=True)
     gramos = db.Column(db.Float, unique=False, nullable=True)
+    turno = db.Column(db.String, unique=True, nullable=True)
 
     def __repr__(self):
         return f'<TablaClasificadora {self.id}>'
@@ -65,7 +64,8 @@ class TablaClasificadora(db.Model):
             "velocidad": self.velocidad,
             "gramos": self.gramos,
             "horas":self.horas,
-            "fecha":self.fecha
+            "fecha":self.fecha,
+            "turno":self.turno
         }
 
 
@@ -76,6 +76,7 @@ class TablaMecanico(db.Model):
     fecha = db.Column(db.String, unique=False, nullable=True)
     problema = db.Column(db.String, unique=True, nullable=True)
     accion = db.Column(db.String, unique=True, nullable=True)
+    turno = db.Column(db.String, unique=True, nullable=True)
 
     def __repr__(self):
         return f'<TablaMecanico {self.id}>'
@@ -87,7 +88,8 @@ class TablaMecanico(db.Model):
             "problema": self.problema,
             "accion": self.accion,
             "horas":self.horas,
-            "fecha":self.fecha
+            "fecha":self.fecha,
+            "turno":self.turno
         }
 
 class TestTable(db.Model):

@@ -10,6 +10,7 @@ export const Formulario_mecanico = () => {
   //REGISTRO INPUTS
    const [problema, setProblema] = useState("");
    const [accion, setAccion] = useState("");
+   const [turno, setTurno] = useState("");
   //ALERT ENVIO FORMULARIO
   const [enviarFormulario, setFormulario] = useState(false);
   //OBTENER FECHA Y HORA
@@ -51,6 +52,7 @@ export const Formulario_mecanico = () => {
         "accion": accion,
         "fecha": `${month}/${day}/${year}`,
         "horas": nowHora,
+        "tuno":turno
       }),
     })
       .then((response) => response.json())
@@ -98,7 +100,16 @@ export const Formulario_mecanico = () => {
                 onKeyUp={(e) => setAccion(e.target.value)}
               />
             </div>
-
+            <div>
+              <label htmlFor="turno">turno</label>
+              <Field
+                type="text"
+                id="turno"
+                name="turno"
+                placeholder="turno"
+                onKeyUp={(e) => setTurno(e.target.value)}
+              />
+            </div>
             <button type="submit" onClick={sendDataClasificadora}>
               Enviar
             </button>

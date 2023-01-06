@@ -104,6 +104,7 @@ export const Formulario_clasificadora = () => {
         gramos: gramos,
         fecha: `${month}/${day}/${year}`,
         horas: nowHora,
+        turno: turno
       }),
     })
       .then((response) => response.json())
@@ -129,6 +130,7 @@ export const Formulario_clasificadora = () => {
           tiempo: "",
           velocidad: "",
           gramos: "",
+          turno:""
         }}
         validate={(valores) => {
           let errores = {};
@@ -183,6 +185,7 @@ export const Formulario_clasificadora = () => {
           setTiempo(valores.tiempo);
           setVelocidad(valores.velocidad);
           setGramos(valores.gramos);
+          setTurno(valores.turno);
           console.log(valores);
           setTimeout(() => setFormulario(false), 5000);
         }}
@@ -315,6 +318,16 @@ export const Formulario_clasificadora = () => {
               <ErrorMessage
                 name="gramos"
                 component={() => <div className="error">{errors.gramos}</div>}
+              />
+            </div>
+            <div>
+              <label htmlFor="turno">turno</label>
+              <Field
+                type="text"
+                id="turno"
+                name="turno"
+                placeholder="turno"
+                onKeyUp={(e) => setTurno(e.target.value)}
               />
             </div>
             <button type="submit" onClick={sendDataClasificadora}>
