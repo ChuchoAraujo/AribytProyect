@@ -33,10 +33,10 @@ class TablaClasificadora(db.Model):
     horas = db.Column(db.String, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
     cajas = db.Column(db.String, unique=False, nullable=True)
-    articulo = db.Column(db.String, unique=True, nullable=True)
-    lote = db.Column(db.String, unique=True, nullable=False)
-    jaulas = db.Column(db.String, unique=True, nullable=False)
-    pedido = db.Column(db.String, unique=True, nullable=False)
+    articulo = db.Column(db.String, unique=False, nullable=True)
+    lote = db.Column(db.String, unique=False, nullable=False)
+    jaulas = db.Column(db.String, unique=False, nullable=False)
+    pedido = db.Column(db.String, unique=False, nullable=False)
     personal = db.Column(db.String, unique=False, nullable=False)
     problema = db.Column(db.String, unique=False, nullable=False)
     accion = db.Column(db.String, unique=False, nullable=False)
@@ -76,7 +76,7 @@ class TablaMecanico(db.Model):
     fecha = db.Column(db.String, unique=False, nullable=True)
     problema = db.Column(db.String, unique=True, nullable=True)
     accion = db.Column(db.String, unique=True, nullable=True)
-    turno = db.Column(db.String, unique=True, nullable=True)
+    turno = db.Column(db.String, unique=False, nullable=True)
 
     def __repr__(self):
         return f'<TablaMecanico {self.id}>'
