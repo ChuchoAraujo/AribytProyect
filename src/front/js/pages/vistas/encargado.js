@@ -1,16 +1,84 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect ,useState , useContext} from "react";
 import { Context } from "../../store/appContext";
-
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 
 export const Encargado = () => {
 
-    const { store, actions } = useContext(Context);
-    useEffect(() => {
-      actions.fetchJoin();
-    }, []);
 
+    const { store, actions } = useContext(Context);
+    const [resultJoin, setResultJoin]=useState([]);
+
+    const [turno, setTurno] = useState("");
+    const [fecha, setFecha] = useState("");
+    const [enviarFormulario, setFormulario] = useState(false);
+
+    const sendDataEncargado = () => {
+      fetch(process.env.BACKEND_URL + "/api/join", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          fecha: fecha,
+          turno: turno
+        }),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          setResultJoin(result);
+          console.log("resultado "+resultJoin);
+        })
+        .catch((error) => console.log("error", error));
+      };
     return (
         <>
+          <Formik
+        initialValues={{
+          turno: "",
+          fecha: "",
+        }}
+        onSubmit={(valores, { resetForm }) => {
+          resetForm();
+          console.log("Formulario enviado");
+          setFormulario(true);
+          setTurno(valores.turno);
+          setFecha(valores.fecha);
+          setTimeout(() => setFormulario(false), 5000);
+        }}
+      >
+        {() => (
+          <Form className="formulario">
+            <div>
+              <label htmlFor="turno">Turno</label>
+              <Field
+                type="text"
+                id="turno"
+                name="turno"
+                placeholder="escriba el turno"
+                //onKeyUp={(e) => setProblema(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="fecha">Fecha</label>
+              <Field
+                type="text"
+                id="fecha"
+                name="fecha"
+                placeholder="Escriba la fecha"
+                //onKeyUp={(e) => setAccion(e.target.value)}
+              />
+            </div>
+            <button type="submit" onClick={sendDataEncargado}>
+              Enviar
+            </button>
+            {enviarFormulario && (
+              <p className="exito">Formulario enviado con exito!</p>
+            )}
+          </Form>
+        )}
+      </Formik>
     <div className="container text-center p-5">
       <h1 className="p-2">Encargado</h1>
       <table className="table">
@@ -36,7 +104,7 @@ export const Encargado = () => {
                 <th scope="col">Accion Mecanico</th>
               </tr>
             </thead>
-        {store.resultJoin.map((item, index) => (
+        {resultJoin.map((item, index) => (
             <>
             <tbody key={index}>
                   <tr>

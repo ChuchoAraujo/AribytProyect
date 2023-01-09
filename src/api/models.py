@@ -43,7 +43,7 @@ class TablaClasificadora(db.Model):
     tiempo = db.Column(db.Float, unique=False, nullable=False)
     velocidad = db.Column(db.Float, unique=False, nullable=True)
     gramos = db.Column(db.Float, unique=False, nullable=True)
-    turno = db.Column(db.String, unique=True, nullable=True)
+    turno = db.Column(db.String, unique=False, nullable=True)
 
     def __repr__(self):
         return f'<TablaClasificadora {self.id}>'
