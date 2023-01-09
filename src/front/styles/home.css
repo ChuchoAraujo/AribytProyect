@@ -96,12 +96,28 @@ button{
 	color: #1f1f1f;
 }
 
+.botonSiguienteFormulario {
+	display: block;
+	background: #4dada4;
+	font-weight: 600;
+	font-family: 'Open Sans', sans-serif;
+	border: none;
+	
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 16px;
+	transition: .3s ease all;
+	margin-top: 20px;
+}
+
 .formulario input,
 .formulario textarea {
 	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	border-radius: 5px;
-	border: 2px solid #e2e2e2;
+	border: 2px solid #4dada4 ;
 	font-size: 18px;
 	padding: 10px;
 	margin-bottom: 5px;
@@ -215,103 +231,8 @@ button{
 
 .logo {
 	background-color: #4dada4;
-	padding: 100px;
-   height: auto;
-   width: auto;
-}
-/*pruebas opacidad*/
-/* .opacity {
-   opacity: 1;
-   
- 
-   background-color: #4dada4;
-   padding: 100px;
-   height: auto;
-   width: auto;
- } */
-
-/* .opacityDone {
-   opacity: 0;
-   transition-duration: 5s;
-   transition-delay: 1s;
-   background-color: white;
-   padding: 100px;
-   height: auto;
-   width: auto;
-} */
-
-
-/**/
-/*CLase que aplica los estilos al elemento a aparecer*/
-.show-element {
-  /*duracion de la animacion, puedes variar el tiempo, entre mas grande mas tarda el efecto*/
-  animation-duration: 2s;
-  animation-fill-mode: both;
-  /*le indicas que animacion quieres aplicarle, animacion hecha por ti en un keyframe*/
-  animation-name: fadeIn;
-  background-color: rgb(225, 225, 255);
-}
-
-.hide-element {
-  animation-duration: 2s;
-  animation-fill-mode: both;
-  animation-name: fadeOut;
-}
-
-/*KeyFrames*/
-/*La animacion hecha por ti, puedes ponerle cualquier nombre, solo es para identificarlo*/
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/*Puedes hacer mas animaciones personalizadas con todo lo que pueda hacer css*/
-@keyframes otherAnimation {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes animationTranslateIn {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-
-@keyframes animationTranslateOut {
-  from {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(-200px);
-  }
+	width: auto;
+	padding: 40px;
 }
 
 /*SELECCION DE AREAS ENCARGADO*/
@@ -342,3 +263,93 @@ button{
 	border-style: none;
 	border-radius: 10px;
 }
+
+
+
+/*PRUEBA CSS DESAPARECER*/
+
+.visibility {
+	visibility: block;
+	margin: 30px;
+}
+
+.hidden {
+	display: none;
+}
+
+.visibility1 {
+	visibility: block;
+	margin: 30px;
+
+}
+
+.hidden1 {
+	display: none;
+}
+
+pruebas opacidad*/
+.opacity {
+   opacity: 1;
+   
+ 
+   background-color: #4dada4;
+
+}
+
+ .opacityDone {
+   opacity: 0;
+   transition-duration: 5s;
+   transition-delay: 2s;
+   background-color: white;
+}
+
+/*HORAS*/
+
+.botonHoras{
+	padding: 15px;
+	width: 200px;
+	border-style: none;
+	background-color: #e2e2e2;
+	margin: 5px;
+	border-radius: 15px;
+}
+
+.botonHoras:hover{
+	padding: 15px;
+	width: 200px;
+	border-style: none;
+	background-color: #4dada4;
+	margin: 5px;
+	border-radius: 15px;
+}
+
+.botonRechazos{
+	padding: 15px;
+	width: 200px;
+	border-style: none;
+	background-color: #4dada4;
+	margin: 5px;
+	border-radius: 15px;
+	color: white;
+}
+.botonRechazos:hover{
+	padding: 15px;
+	width: 200px;
+	border-style: none;
+	background-color: #e2e2e2;
+	margin: 5px;
+	border-radius: 15px;
+	color: black;
+}
+
+/*Vista encargado pruebas mostrar ocultar columnas*/
+
+.visible {
+	display: block;
+}
+
+.esconder {
+	display: none;
+}
+
+

@@ -74,8 +74,8 @@ class TablaMecanico(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     horas = db.Column(db.String, unique=False, nullable=True)
     fecha = db.Column(db.String, unique=False, nullable=True)
-    problema = db.Column(db.String, unique=True, nullable=True)
-    accion = db.Column(db.String, unique=True, nullable=True)
+    problema = db.Column(db.String, unique=False, nullable=True)
+    accion = db.Column(db.String, unique=False, nullable=True)
     turno = db.Column(db.String, unique=False, nullable=True)
 
     def __repr__(self):

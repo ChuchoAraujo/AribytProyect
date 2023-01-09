@@ -15,12 +15,12 @@ export const Container_clasificadora = () => {
 
   return (
     <>
-      <div>
-        <div className="container  text-center">
-          <div className="row align-items-start">
-            <Formulario_clasificadora />
-          </div>
+      <div className="container-fluid text-center align-items-start row">
+        <div className="col-3"></div>
+        <div className="col-6">
+          <Formulario_clasificadora />
         </div>
+        <div className="col-3"></div>
       </div>
     </>
   );
