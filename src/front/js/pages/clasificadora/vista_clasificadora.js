@@ -12,12 +12,9 @@ export const Vista_clasificadora = () => {
 
   return (
     <>
-      <div>
-        <div className="container  text-center">
-          <div className="row align-items-start">
-            <Horas />
-          </div>
-        </div>
+      <div className="container-fluid m-3 text-center align-items-start">
+        <Horas />
+        <button className="botonRechazos">------ Rechazos ------</button>
       </div>
     </>
   );

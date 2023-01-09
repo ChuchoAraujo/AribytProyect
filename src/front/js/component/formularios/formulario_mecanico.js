@@ -39,7 +39,7 @@ export const Formulario_mecanico = () => {
       .catch((error) => console.log("error", error));
   }, []);
 
-  const sendDataClasificadora = () => {
+  const sendDataMecanico = () => {
     fetch(process.env.BACKEND_URL + "/api/mecanico", {
       method: "POST",
       headers: {
@@ -52,7 +52,7 @@ export const Formulario_mecanico = () => {
         "accion": accion,
         "fecha": `${month}/${day}/${year}`,
         "horas": nowHora,
-        "tuno":turno
+        "turno":turno
       }),
     })
       .then((response) => response.json())
@@ -68,6 +68,7 @@ export const Formulario_mecanico = () => {
         initialValues={{
           problema: "",
           accion: "",
+          turno: "",
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
@@ -75,6 +76,7 @@ export const Formulario_mecanico = () => {
           setFormulario(true);
           setProblema(valores.problema);
           setAccion(valores.accion);
+          setTurno(valores.turno);
           setTimeout(() => setFormulario(false), 5000);
         }}
       >
@@ -110,7 +112,7 @@ export const Formulario_mecanico = () => {
                 onKeyUp={(e) => setTurno(e.target.value)}
               />
             </div>
-            <button type="submit" onClick={sendDataClasificadora}>
+            <button type="submit" onClick={sendDataMecanico}>
               Enviar
             </button>
             {enviarFormulario && (

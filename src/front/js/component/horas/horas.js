@@ -14,11 +14,10 @@ export const Horas = () => {
     
     return (
       <>
-        <div className="mt-2" key={element.key}>
+        <div key={element.key}>
           <Link to={"/vista_login/vista_clasificadora/" + (key + 1)}>
             <button
-              className="btn btn-secondary"
-              style={{ width: "200px" }}
+              className="botonHoras"
               id={key}
               onClick={() => actions.selectionHora(key+1)}
             >

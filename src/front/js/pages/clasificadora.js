@@ -41,7 +41,7 @@ export const Clasificadora = () => {
 
     //------ CHECKBOX TURNO
     if (e.target.checked) {
-      const resultTurno = user.filter((item) => item.turno === e.target.value);
+      const resultTurno = store.Mecanicouser.filter((item) => item.turno === e.target.value);
 
       setDataFilter([...dataFilter, ...resultTurno]);
     } else {
@@ -62,7 +62,7 @@ export const Clasificadora = () => {
 
     //------ CHECKBOX ROLE
     if (e.target.checked) {
-      const resultRole = user.filter((item) => item.role === e.target.value);
+      const resultRole = store.user.filter((item) => item.role === e.target.value);
 
       setDataFilter([...dataFilter, ...resultRole]);
     } else {

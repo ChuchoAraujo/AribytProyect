@@ -30,9 +30,6 @@ export const Formulario_clasificadora = () => {
   var todayHora = new Date();
   var nowHora = parseFloat(todayHora.toLocaleTimeString("en-US"));
 
-
-
-
   const horaActual = new Intl.DateTimeFormat(undefined, {
     timeStyle: "short",
   }).format(new Date());
@@ -40,6 +37,28 @@ export const Formulario_clasificadora = () => {
 
   const horaConvertida = parseFloat(horaActual);
   console.log("Esta es la hora convertida: ", horaConvertida);
+
+// ----------------------- PAGINACION FORMULARIO --------------------------------------//
+ const [pagina1, setpagina1] = useState("");
+ const [pagina2, setPagina2] = useState("");
+ const [pagina3, setPagina3] = useState("");
+
+ const printCondicitional = () => {
+   if (pagina1 === pagina1) {
+     setpagina1("visibility");
+     setPagina2("hidden");
+   } else {
+     console.log("nada");
+   }
+ };
+  const printCondicitional2 = () => {
+    if (pagina2 === pagina2) {
+      setPagina2("visibility");
+      setPagina3("hidden");
+    } else {
+      console.log("nada");
+    }
+  };
 
   // ---------------------------- FUNCION OBTENER HORA-TURNOS----------------------------------//
 
@@ -130,7 +149,7 @@ export const Formulario_clasificadora = () => {
           tiempo: "",
           velocidad: "",
           gramos: "",
-          turno:""
+          turno: "",
         }}
         validate={(valores) => {
           let errores = {};
@@ -145,18 +164,6 @@ export const Formulario_clasificadora = () => {
           if (!valores.articulo) {
             errores.articulo = "Por favor ingresa un articulo";
           }
-          //validacion Lote
-          /* if(!valores.lote){
-                                    errores.lote = 'Por favor ingresa un lote'
-                                }*/
-
-          //validacion Jaulas
-          //validacion Pedido
-          //validacion personal
-          //validacion problema
-          //validacion accion
-          //valicion tiempo
-          //validacion velocidad
           if (!valores.velocidad) {
             errores.velocidad = "Por favor ingresa la velocidad";
           } else if (!/^\d*\.\d+$/.test(valores.velocidad)) {
@@ -192,153 +199,180 @@ export const Formulario_clasificadora = () => {
       >
         {({ errors }) => (
           <Form className="formulario">
-            <div>
-              <label htmlFor="cajas">Cajas</label>
-              <Field
-                type="text"
-                id="cajas"
-                name="cajas"
-                placeholder="Número de cajas"
-                onKeyUp={(e) => setCajas(e.target.value)}
-              />
-              <ErrorMessage
-                name="cajas"
-                component={() => <div className="error">{errors.cajas}</div>}
-              />
+            {/*--------------------------Formulario pagina1*-------------------*/}
+            <div className={pagina1 === "visibility" ? "hidden" : "visibility"}>
+              <div>
+                <label htmlFor="cajas">Cajas</label>
+                <Field
+                  className="inputsFormulario"
+                  type="text"
+                  id="cajas"
+                  name="cajas"
+                  placeholder="Número de cajas"
+                  onKeyUp={(e) => setCajas(e.target.value)}
+                />
+                <ErrorMessage
+                  name="cajas"
+                  component={() => <div className="error">{errors.cajas}</div>}
+                />
+              </div>
+              <div>
+                <label htmlFor="articulo">Artículo</label>
+                <Field
+                  type="text"
+                  id="articulo"
+                  name="articulo"
+                  placeholder="Codigo de Articulo"
+                  onKeyUp={(e) => setArticulo(e.target.value)}
+                />
+                <ErrorMessage
+                  name="articulo"
+                  component={() => (
+                    <div className="error">{errors.articulo}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <label htmlFor="lote">Lote</label>
+                <Field
+                  type="text"
+                  id="lote"
+                  name="lote"
+                  placeholder="Numero Lote"
+                  onKeyUp={(e) => setLote(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="jaulas">Jaulas</label>
+                <Field
+                  type="text"
+                  id="jaulas"
+                  name="jaulas"
+                  placeholder="Numero de Jaulas"
+                  onKeyUp={(e) => setJaulas(e.target.value)}
+                />
+              </div>
+              <button
+                onClick={printCondicitional}
+                className="botonSiguienteFormulario"
+              >
+                Siguiente
+              </button>
             </div>
-            <div>
-              <label htmlFor="articulo">Artículo</label>
-              <Field
-                type="text"
-                id="articulo"
-                name="articulo"
-                placeholder="Codigo de Articulo"
-                onKeyUp={(e) => setArticulo(e.target.value)}
-              />
-              <ErrorMessage
-                name="articulo"
-                component={() => <div className="error">{errors.articulo}</div>}
-              />
+
+            {/*--------------------------Formulario pagina2*-------------------*/}
+            <div className={pagina2 === "hidden" ? "visibility" : "hidden"}>
+              <div>
+                <label htmlFor="pedido">pedido</label>
+                <Field
+                  type="text"
+                  id="pedido"
+                  name="pedido"
+                  placeholder="Numero de pedido"
+                  onKeyUp={(e) => setPedido(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="personal">personal</label>
+                <Field
+                  as="textarea"
+                  id="personal"
+                  name="personal"
+                  placeholder="Personal en la maquina"
+                  onKeyUp={(e) => setPersonal(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="problema">problema</label>
+                <Field
+                  as="textarea"
+                  id="problema"
+                  name="problema"
+                  placeholder="Problemas ocurridos"
+                  onKeyUp={(e) => setProblema(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="accion">accion</label>
+                <Field
+                  as="textarea"
+                  id="accion"
+                  name="accion"
+                  placeholder="Solucion al problema o problemas"
+                  onKeyUp={(e) => setAccion(e.target.value)}
+                />
+              </div>
+              <button
+                onClick={printCondicitional2}
+                className="botonSiguienteFormulario"
+              >
+                Siguiente
+              </button>
             </div>
-            <div>
-              <label htmlFor="lote">Lote</label>
-              <Field
-                type="text"
-                id="lote"
-                name="lote"
-                placeholder="Numero Lote"
-                onKeyUp={(e) => setLote(e.target.value)}
-              />
+            {/*--------------------------Formulario pagina3*-------------------*/}
+            <div className={pagina3 === "hidden" ? "visibility" : "hidden"}>
+              <div>
+                <label htmlFor="tiempo">tiempo</label>
+                <Field
+                  type="number"
+                  id="tiempo"
+                  name="tiempo"
+                  placeholder="Tiempo parada"
+                  onKeyUp={(e) => setTiempo(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="velocidad">velocidad</label>
+                <Field
+                  type="number"
+                  id="velocidad"
+                  name="velocidad"
+                  placeholder="Velocidad de la maquina"
+                  onKeyUp={(e) => setVelocidad(e.target.value)}
+                />
+                <ErrorMessage
+                  name="velocidad"
+                  component={() => (
+                    <div className="error">{errors.velocidad}</div>
+                  )}
+                />
+              </div>
+              <div>
+                <label htmlFor="gramos">gramos</label>
+                <Field
+                  type="number"
+                  id="gramos"
+                  name="gramos"
+                  placeholder="Gramos de la cola"
+                  onKeyUp={(e) => setGramos(e.target.value)}
+                />
+                <ErrorMessage
+                  name="gramos"
+                  component={() => <div className="error">{errors.gramos}</div>}
+                />
+              </div>
+              <div>
+                <label htmlFor="turno">turno</label>
+                <Field
+                  type="text"
+                  id="turno"
+                  name="turno"
+                  placeholder="turno"
+                  onKeyUp={(e) => setTurno(e.target.value)}
+                />
+              </div>
+              <button type="submit" onClick={sendDataClasificadora}>
+                Enviar
+              </button>
+              {enviarFormulario && (
+                <div class="alert alert-primary" role="alert">
+                  Registro realizado!
+                </div>
+              )}
+              <button className="btn-success mt-3" type="button" onClick={back}>
+                Back
+              </button>
             </div>
-            <div>
-              <label htmlFor="jaulas">Jaulas</label>
-              <Field
-                type="text"
-                id="jaulas"
-                name="jaulas"
-                placeholder="Numero de Jaulas"
-                onKeyUp={(e) => setJaulas(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="pedido">pedido</label>
-              <Field
-                type="text"
-                id="pedido"
-                name="pedido"
-                placeholder="Numero de pedido"
-                onKeyUp={(e) => setPedido(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="personal">personal</label>
-              <Field
-                as="textarea"
-                id="personal"
-                name="personal"
-                placeholder="Personal en la maquina"
-                onKeyUp={(e) => setPersonal(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="problema">problema</label>
-              <Field
-                as="textarea"
-                id="problema"
-                name="problema"
-                placeholder="Problemas ocurridos"
-                onKeyUp={(e) => setProblema(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="accion">accion</label>
-              <Field
-                as="textarea"
-                id="accion"
-                name="accion"
-                placeholder="Solucion al problema o problemas"
-                onKeyUp={(e) => setAccion(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="tiempo">tiempo</label>
-              <Field
-                type="number"
-                id="tiempo"
-                name="tiempo"
-                placeholder="Tiempo parada"
-                onKeyUp={(e) => setTiempo(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="velocidad">velocidad</label>
-              <Field
-                type="number"
-                id="velocidad"
-                name="velocidad"
-                placeholder="Velocidad de la maquina"
-                onKeyUp={(e) => setVelocidad(e.target.value)}
-              />
-              <ErrorMessage
-                name="velocidad"
-                component={() => (
-                  <div className="error">{errors.velocidad}</div>
-                )}
-              />
-            </div>
-            <div>
-              <label htmlFor="gramos">gramos</label>
-              <Field
-                type="number"
-                id="gramos"
-                name="gramos"
-                placeholder="Gramos de la cola"
-                onKeyUp={(e) => setGramos(e.target.value)}
-              />
-              <ErrorMessage
-                name="gramos"
-                component={() => <div className="error">{errors.gramos}</div>}
-              />
-            </div>
-            <div>
-              <label htmlFor="turno">turno</label>
-              <Field
-                type="text"
-                id="turno"
-                name="turno"
-                placeholder="turno"
-                onKeyUp={(e) => setTurno(e.target.value)}
-              />
-            </div>
-            <button type="submit" onClick={sendDataClasificadora}>
-              Enviar
-            </button>
-            {enviarFormulario && (
-              <p className="exito">Formulario enviado con exito!</p>
-            )}
-            <button className="btn-success mt-3" type="button" onClick={back}>
-              Back
-            </button>
           </Form>
         )}
       </Formik>
