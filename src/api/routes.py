@@ -224,17 +224,16 @@ def filtro_usuario(valor):
 @api.route('/join', methods=['POST'])
 @cross_origin()
 def get_join():
-    request_data = request.get_json()
-    turno1 = request_data['turno']
-    fecha1 = request_data['fecha']
+    turno1 = request.json.get('turno')
+    fecha1 = request.json.get('fecha')
     array=[]
     array1=[]
     resultado = db.session.query(User,TablaClasificadora). \
         select_from(User).join(TablaClasificadora). \
-            filter(TablaClasificadora.turno==turno1 and TablaClasificadora.fecha==fecha1).all()
+            filter(TablaClasificadora.turno==turno1).filter(TablaClasificadora.fecha==fecha1).all()
     resultado1 = db.session.query(User,TablaMecanico). \
         select_from(User).join(TablaMecanico). \
-            filter(TablaMecanico.turno==turno1 and TablaMecanico.fecha==fecha1).all()    
+            filter(TablaMecanico.turno==turno1).filter(TablaMecanico.fecha==fecha1).all()    
 
     for usuario,clasificadora in resultado:
         array.append({

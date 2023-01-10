@@ -7,11 +7,13 @@ import { Page_login } from "./page_login/vista_login";
 import { Vista_login } from "./page_login/vista_login";
 import { Prueba } from "./prueba";
 import { Transition } from "@headlessui/react";
+import { DatePicker } from "@material-ui/pickers";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const [logo, setLogo] = useState("");
   const [login, setlogin] = useState("");
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
 
   const loadLogo = useEffect(() => {
     setLogo("opacity")
@@ -41,7 +43,7 @@ export const Home = () => {
       }
    }
 
-
+console.log(fechaSeleccionada)
 
   return (
     <div className="container-fluid logo" onLoad={myTimeout}>
@@ -49,7 +51,18 @@ export const Home = () => {
         <Page_logo />
         {/* <button onClick={comenzar}>Comenzar!</button> */}
       </div>
-
+      <div>
+        <main className="p-2 text-center">
+          <h3 htmlFor="fecha">----- Fecha -----</h3>
+          <DatePicker
+            id="fecha"
+            name="fecha"
+            onChange={setFechaSeleccionada}
+            value={fechaSeleccionada}
+            className="text-center"
+          />
+        </main>
+      </div>
       <div className={pageLogin === "hidden" ? "visibility" : "hidden"}>
         <Vista_login />
       </div>

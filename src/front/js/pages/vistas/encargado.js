@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useNavigate } from "react-router-dom";
-import {Root} from "../../component/calendario"
+import { DatePicker } from "@material-ui/pickers";
+
 
 export const Encargado = () => {
   const { store, actions } = useContext(Context);
@@ -13,9 +13,14 @@ export const Encargado = () => {
   const [turno, setTurno] = useState("");
   const [fecha, setFecha] = useState("");
   const [enviarFormulario, setFormulario] = useState(false);
-
-  const [colorTurno, setColorTurno] = useState("")
   const [role, setRole] = useState("");
+
+  // ----------------- FECHA ----------------
+   const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
+     let day =fechaSeleccionada.getDate();
+     let month = fechaSeleccionada.getMonth() + 1;
+     let year = fechaSeleccionada.getFullYear();
+     let fechaConvertida = `${month}/${day}/${year}`;
 
   const sendDataEncargado = () => {
     fetch(process.env.BACKEND_URL + "/api/join", {
@@ -33,27 +38,18 @@ export const Encargado = () => {
       .then((result) => {
         setResultJoin(result.clasificadora);
         setResultMecanido(result.mecanico);
-        console.log("resultado " + resultJoin);
       })
       .catch((error) => console.log("error", error));
   };
+
+  console.log(`${month}/${day}/${year}`);
+  console.log("esta es la fecha de Josgredh", fecha)
   return (
     <>
-      <div>
-        <Root />
-      </div>
       <Formik
         initialValues={{
           turno: "",
           fecha: "",
-        }}
-        validate={(valores) => {
-          let errores = {};
-
-          // Validacion checkbox turno
-          if (!valores.turno) {
-            errores.turno = "Por favor selecciona un turno";
-          }
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
@@ -66,8 +62,8 @@ export const Encargado = () => {
       >
         {() => (
           <Form className="formulario">
-            <div>------ Turnos ------</div>
-            <div>
+            <div className="text-center p-2">
+              <h3>------ Turnos ------</h3>
               <button
                 onClick={(e) => {
                   setTurno(e.target.value), setRole("seleccionNocheTardeGris");
@@ -119,43 +115,45 @@ export const Encargado = () => {
                 noche
               </button>
             </div>
-            {/* <div className="containerTurno">
-              <label className="btn btn-outline-success me-2" htmlFor="turno">
-                Mañana
-              </label>
-              <Field
-                className="btn-check me-3 p-2 m-3"
-                type="checkbox"
-                id="turno"
-                name="turno"
-                value="mañana"
-                placeholder="escriba el turno"
-                onKeyUp={(e) => setTurno(e.target.value)}
-              />
-            </div> */}
-            <div>
-              <label htmlFor="fecha">----- Fecha -----</label>
-              <Field
-                type="text"
+            {/*----------------------FECHA MUI-------------------*/}
+
+            <div className="p-2 text-center">
+              <h3 htmlFor="fecha">----- Fecha -----</h3>
+              <DatePicker
                 id="fecha"
                 name="fecha"
-                placeholder="Escriba la fecha"
-                onKeyUp={(e) => setFecha(e.target.value)}
+                onChange={setFechaSeleccionada}
+                value={fechaSeleccionada}
+                className="text-center"
               />
             </div>
-            <button type="submit" onClick={sendDataEncargado}>
-              Enviar
-            </button>
-            {enviarFormulario && (
-              <p className="exito">Formulario enviado con exito!</p>
-            )}
+
+            {/*----------------------FeNVIO DATOS-------------------*/}
+            <div className="text-center botonSagrado"><button onClick={setFecha(fechaConvertida)}>Click</button></div>
+            <div className="d-flex justify-content-center">
+              <button type="submit" onClick={sendDataEncargado}>
+                Enviar
+              </button>
+            </div>
+            <div>
+              {enviarFormulario && (
+                <div
+                  className="alert alert-success text-center"
+                  width={200}
+                  role="alert"
+                >
+                  Filtros aplicados con éxito!
+                </div>
+              )}
+            </div>
           </Form>
         )}
       </Formik>
+
       <div className="container text-center p-5">
         <h1 className="p-2">Encargado</h1>
-        <table className="table">
-          <thead className="table-success">
+        <table className="table p-2">
+          <thead className="tableColor">
             <tr>
               <th scope="col">hora clasificadora</th>
               <th scope="col">Email Clasificadora</th>
@@ -197,7 +195,7 @@ export const Encargado = () => {
           ))}
         </table>
         <table className="table">
-          <thead className="table-success">
+          <thead className="table tableColor">
             <tr>
               <th scope="col">Hora Mecanico</th>
               <th scope="col">Email Mecanico</th>

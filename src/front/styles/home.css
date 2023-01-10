@@ -148,10 +148,12 @@ button{
 	color: #fff;
 	font-size: 16px;
 	transition: .3s ease all;
+	width:200px
 }
 
 .formulario button[type="submit"]:hover {
-	background: #0051ff;
+	background: #218379;
+	width:200px
 }
 
 .formulario .exito {
@@ -159,6 +161,7 @@ button{
 	font-size: 14px;
 	padding-top: 20px;
 	color: #02a802;
+	width:200px
 }
 
 .formulario input[type="radio"] {
@@ -167,6 +170,16 @@ button{
 
 
 .containerFormClasificadora{
+	background-color: #4dada4;
+}
+
+.calendario {
+	background-color: #218379 ;
+}
+
+
+/*Table*/
+.tableColor {
 	background-color: #4dada4;
 }
 
@@ -256,7 +269,7 @@ button{
 /*PAGINA ENCARGADO SELECCION ROLES*/
 
 .seleccionTurnoMañanaGris {
-	background-color: #bbbcbb;
+	background-color: #e2e2e2;
 	padding: 10px;
 	margin: 10px;
 	color: black;
@@ -274,7 +287,7 @@ button{
 }
 
 .seleccionTurnoTardeGris {
-	background-color: #bbbcbb;
+	background-color: #e2e2e2;
 	padding: 10px;
 	margin: 10px;
 	color: black;
@@ -292,7 +305,7 @@ button{
 }
 
 .seleccionTurnoNocheGris {
-	background-color: #bbbcbb;
+	background-color: #e2e2e2;
 	padding: 10px;
 	margin: 10px;
 	color: black;
@@ -401,3 +414,7 @@ pruebas opacidad*/
 }
 
 
+/*Boton sagrado*/
+.botonSagrado{
+	display: none;
+}
