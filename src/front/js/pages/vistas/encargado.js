@@ -7,11 +7,14 @@ export const Encargado = () => {
   const { store, actions } = useContext(Context);
   const [resultJoin, setResultJoin] = useState([]);
   const [resultMecanico, setResultMecanido] = useState([]);
-  const [indice,setIndice] = useState([]);
+  const [indice, setIndice] = useState([]);
 
   const [turno, setTurno] = useState("");
   const [fecha, setFecha] = useState("");
   const [enviarFormulario, setFormulario] = useState(false);
+
+  const [colorTurno, setColorTurno] = useState("")
+  const [role, setRole] = useState("");
 
   const sendDataEncargado = () => {
     fetch(process.env.BACKEND_URL + "/api/join", {
@@ -40,6 +43,14 @@ export const Encargado = () => {
           turno: "",
           fecha: "",
         }}
+        validate={(valores) => {
+          let errores = {};
+
+          // Validacion checkbox turno
+          if (!valores.turno) {
+            errores.turno = "Por favor selecciona un turno";
+          }
+        }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
           console.log("Formulario enviado");
@@ -51,24 +62,81 @@ export const Encargado = () => {
       >
         {() => (
           <Form className="formulario">
+            <div>------ Turnos ------</div>
             <div>
-              <label htmlFor="turno">Turno</label>
+              <button
+                onClick={(e) => {
+                  setTurno(e.target.value), setRole("seleccionNocheTardeGris");
+                }}
+                type="button"
+                name="turno"
+                id="turno"
+                value="mañana"
+                className={
+                  role === "seleccionNocheTardeGris"
+                    ? "seleccionTurnoNocheVerde"
+                    : "seleccionTurnoNocheGris"
+                }
+              >
+                Mañana
+              </button>
+
+              <button
+                onClick={(e) => {
+                  setTurno(e.target.value), setRole("seleccionTurnoTardeGris");
+                }}
+                type="button"
+                name="turno"
+                id="turno"
+                value="tarde"
+                className={
+                  role === "seleccionTurnoTardeGris"
+                    ? "seleccionTurnoTardeVerde"
+                    : "seleccionTurnoTardeGris"
+                }
+              >
+                tarde
+              </button>
+
+              <button
+                onClick={(e) => {
+                  setTurno(e.target.value), setRole("seleccionTurnoMañanaGris");
+                }}
+                type="button"
+                name="turno"
+                id="turno"
+                value="noche"
+                className={
+                  role === "seleccionTurnoMañanaGris"
+                    ? "seleccionTurnoMañanaVerde"
+                    : "seleccionTurnoMañanaGris"
+                }
+              >
+                noche
+              </button>
+            </div>
+            {/* <div className="containerTurno">
+              <label className="btn btn-outline-success me-2" htmlFor="turno">
+                Mañana
+              </label>
               <Field
-                type="text"
+                className="btn-check me-3 p-2 m-3"
+                type="checkbox"
                 id="turno"
                 name="turno"
+                value="mañana"
                 placeholder="escriba el turno"
-                onKeyUp={(e) => setProblema(e.target.value)}
+                onKeyUp={(e) => setTurno(e.target.value)}
               />
-            </div>
+            </div> */}
             <div>
-              <label htmlFor="fecha">Fecha</label>
+              <label htmlFor="fecha">----- Fecha -----</label>
               <Field
                 type="text"
                 id="fecha"
                 name="fecha"
                 placeholder="Escriba la fecha"
-                onKeyUp={(e) => setAccion(e.target.value)}
+                onKeyUp={(e) => setFecha(e.target.value)}
               />
             </div>
             <button type="submit" onClick={sendDataEncargado}>
@@ -99,7 +167,6 @@ export const Encargado = () => {
               <th scope="col">Tiempo</th>
               <th scope="col">Velocidad</th>
               <th scope="col">Gramos</th>
-
             </tr>
           </thead>
           {resultJoin.map((item, index1) => (
@@ -134,9 +201,9 @@ export const Encargado = () => {
               <th scope="col">Accion Mecanico</th>
             </tr>
           </thead>
-          {resultMecanico.map((item,index)=>(
+          {resultMecanico.map((item, index) => (
             <>
-             <tbody key={index}>
+              <tbody key={index}>
                 <tr>
                   <th scope="row">{item.horaDelMecanico}</th>
                   <td>{item.usuarioMecanico}</td>

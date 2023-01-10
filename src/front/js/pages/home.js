@@ -26,15 +26,13 @@ export const Home = () => {
 //---------------- PRUEBA APARECER Y DESAPARECER ------------------------------------------
      const [logoAribyt, setLogoAribyt] = useState("");
      const [pageLogin, setPageLogin] = useState("");
-     // className={logo === "opacity" ? "opacityDone" : "opacity"}
-     //       onLoad={loadLogo}
-     //  const loadLogo = useEffect(() => {
-     //    setLogo("opacity");
-     //  }, []);
 
-  
+  const myTimeout = () => {
+    setTimeout(alert("hola"), 5000);
+  } 
 
    const comenzar = () => {
+  
       if (logoAribyt === logoAribyt) {
         setLogoAribyt("visibility");
         setPageLogin("hidden");
@@ -46,7 +44,7 @@ export const Home = () => {
 
 
   return (
-    <div className="container-fluid logo">
+    <div className="container-fluid logo" onLoad={myTimeout}>
       <div className={logoAribyt === "visibility" ? "hidden" : "visibility"}>
         <Page_logo />
         {/* <button onClick={comenzar}>Comenzar!</button> */}

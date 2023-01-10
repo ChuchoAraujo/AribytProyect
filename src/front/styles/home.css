@@ -253,16 +253,64 @@ button{
 }
 
 
-/*VER, ADD, ELIMINAR Y EDITAR USUARIOS*/
+/*PAGINA ENCARGADO SELECCION ROLES*/
 
-.butonUsuarios {
-	background-color: #4dada4;
-	margin: 10px;
+.seleccionTurnoMañanaGris {
+	background-color: #bbbcbb;
 	padding: 10px;
-	color: white;
-	border-style: none;
+	margin: 10px;
+	color: black;
 	border-radius: 10px;
+	transition-duration: 0.5s;
+
 }
+.seleccionTurnoMañanaVerde{
+	background-color: #4dada4;
+	padding: 10px;
+	margin: 10px;
+	color: white;
+	border-radius: 10px;
+	transition-duration: 1s;
+}
+
+.seleccionTurnoTardeGris {
+	background-color: #bbbcbb;
+	padding: 10px;
+	margin: 10px;
+	color: black;
+	border-radius: 10px;
+	transition-duration: 0.5s;
+
+}
+.seleccionTurnoTardeVerde{
+	background-color: #4dada4;
+	padding: 10px;
+	margin: 10px;
+	color: white;
+	border-radius: 10px;
+	transition-duration: 1s;
+}
+
+.seleccionTurnoNocheGris {
+	background-color: #bbbcbb;
+	padding: 10px;
+	margin: 10px;
+	color: black;
+	border-radius: 10px;
+	transition-duration: 0.5s;
+
+}
+.seleccionTurnoNocheVerde{
+	background-color: #4dada4;
+	padding: 10px;
+	margin: 10px;
+	color: white;
+	border-radius: 10px;
+	transition-duration: 1s;
+}
+
+
+
 
 
 
