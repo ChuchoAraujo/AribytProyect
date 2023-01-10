@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import {store, actions} from "../../store/flux";
+import { Context } from "../../store/appContext";
 
 export const Horas_mecanico = () => {
-  const [horas, setHoras] = useState(["1", "2", "3", "4", "5", "6", "7", "8"]);
+  const { store, actions } = useContext(Context);
 
-  return horas.map((element, key) => {
+
+  return store.horas.map((element, key) => {
     return (
       <>
         <div className="mt-2">
@@ -13,6 +16,7 @@ export const Horas_mecanico = () => {
               className="btn btn-secondary"
               style={{ width: "200px" }}
               id={key}
+              onClick={() => actions.selectionHoraMec(key+1)}
             >
               {element}
             </button>

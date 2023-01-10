@@ -7,6 +7,7 @@ export const Encargado = () => {
   const { store, actions } = useContext(Context);
   const [resultJoin, setResultJoin] = useState([]);
   const [resultMecanico, setResultMecanido] = useState([]);
+  const [indice,setIndice] = useState([]);
 
   const [turno, setTurno] = useState("");
   const [fecha, setFecha] = useState("");
@@ -98,15 +99,12 @@ export const Encargado = () => {
               <th scope="col">Tiempo</th>
               <th scope="col">Velocidad</th>
               <th scope="col">Gramos</th>
-              <th scope="col">Hora Mecanico</th>
-              <th scope="col">Email Mecanico</th>
-              <th scope="col">Problema Mecanico</th>
-              <th scope="col">Accion Mecanico</th>
+
             </tr>
           </thead>
-          {resultJoin.map((item, index) => (
+          {resultJoin.map((item, index1) => (
             <>
-              <tbody key={index}>
+              <tbody key={index1}>
                 <tr>
                   <th scope="row">{item.horaClasificadora}</th>
                   <td>{item.usuarioClasificadora}</td>
@@ -122,14 +120,28 @@ export const Encargado = () => {
                   <td>{item.tiempo}</td>
                   <td>{item.velocidad}</td>
                   <td>{item.gramos}</td>
-                  {resultMecanico.map((item, index) => (
-                    <>
-                  <td>{item.horaDelMecanico}</td>
+                </tr>
+              </tbody>
+            </>
+          ))}
+        </table>
+        <table className="table">
+          <thead className="table-success">
+            <tr>
+              <th scope="col">Hora Mecanico</th>
+              <th scope="col">Email Mecanico</th>
+              <th scope="col">Problema Mecanico</th>
+              <th scope="col">Accion Mecanico</th>
+            </tr>
+          </thead>
+          {resultMecanico.map((item,index)=>(
+            <>
+             <tbody key={index}>
+                <tr>
+                  <th scope="row">{item.horaDelMecanico}</th>
                   <td>{item.usuarioMecanico}</td>
                   <td>{item.problemaMecanico}</td>
                   <td>{item.accionMecanico}</td>
-                  </>
-                  ))}
                 </tr>
               </tbody>
             </>

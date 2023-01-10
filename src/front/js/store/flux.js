@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       horas: ["1", "2", "3", "4", "5", "6", "7", "8"],
       hora: "",
+      horamec:"",
       userId:"",
       message: null,
       role: "",
@@ -37,6 +38,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       selectionHora: (hora) => {
         // const store = getStore()
         setStore({ hora: hora });
+        console.log("Se ha seleccionado la hora:" + hora);
+      },
+      selectionHoraMec: (hora) => {
+        // const store = getStore()
+        setStore({ horamec: hora });
         console.log("Se ha seleccionado la hora:" + hora);
       },
 

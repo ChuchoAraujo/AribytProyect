@@ -214,11 +214,11 @@ def get_encargado():
 
 
 def filtro_usuario(valor):
-    email=""
+    userName=""
     sentencia = db.session.query(User).filter(User.id==valor).all()
     for result in sentencia:
-        email=result.email
-    return email
+        userName=result.username
+    return userName
 
 
 @api.route('/join', methods=['POST'])

@@ -51,7 +51,7 @@ export const Formulario_mecanico = () => {
         "problema": problema,
         "accion": accion,
         "fecha": `${month}/${day}/${year}`,
-        "horas": nowHora,
+        "horas": store.horamec,
         "turno":turno
       }),
     })

@@ -122,7 +122,7 @@ export const Formulario_clasificadora = () => {
         velocidad: velocidad,
         gramos: gramos,
         fecha: `${month}/${day}/${year}`,
-        horas: nowHora,
+        horas: store.hora,
         turno: turno
       }),
     })
