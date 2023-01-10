@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../../store/appContext";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
+import {Root} from "../../component/calendario"
 
 export const Encargado = () => {
   const { store, actions } = useContext(Context);
@@ -38,6 +39,9 @@ export const Encargado = () => {
   };
   return (
     <>
+      <div>
+        <Root />
+      </div>
       <Formik
         initialValues={{
           turno: "",
