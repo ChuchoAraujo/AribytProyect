@@ -92,6 +92,31 @@ class TablaMecanico(db.Model):
             "turno":self.turno
         }
 
+class TablaRechazo(db.Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    fichas = db.Column(db.Float, unique=False, nullable=True)
+    paneles = db.Column(db.Float, unique=False, nullable=True)
+    jaula = db.Column(db.Float, unique=False, nullable=True)
+    turno = db.Column(db.String, unique=False, nullable=True)
+    fecha = db.Column(db.String, unique=False, nullable=True)
+
+
+    def __repr__(self):
+        return f'<TablaRechazo {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "fichas": self.problema,
+            "paneles": self.accion,
+            "jaula":self.horas,
+            "turno":self.turno,
+            "fecha":self.fecha
+        }
+
+
 class TestTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
