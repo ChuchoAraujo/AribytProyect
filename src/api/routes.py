@@ -210,8 +210,8 @@ def rechazo():
     fichas = request.json.get('fichas', None)
     paneles = request.json.get('paneles', None)
     jaulas = request.json.get('jaulas', None)
-    turno = request.json.get('turno',none)
-    fecha =request.json.get('fecha',none)
+    turno = request.json.get('turno',None)
+    fecha =request.json.get('fecha',None)
 
     user_id = user_id = get_jwt_identity()
 
