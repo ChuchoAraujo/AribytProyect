@@ -197,7 +197,7 @@ def mecanico():
 def get_rechazo():
     get_rechazo = TablaRechazo.query.all()
     result = [element.serialize() for element in get_mecanico]
-    response_body = {'msg': 'Get mecanico OK'}
+    response_body = {'msg': 'Get rechazo OK'}
     return jsonify(result), 200
 
 
